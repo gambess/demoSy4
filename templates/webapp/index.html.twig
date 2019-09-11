@@ -1,10 +1,37 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}#}
 
-{% block title %}Observatorio Regional{% endblock %}
+<!DOCTYPE html>
+<html>
+    <head>
+        {% block title %}Observatorio Regional{% endblock %}
+{#        <title>Observatorio Regional</title>#}
 
-{% block body %}
-    <h1>Bienvenido a la nueva Pagina del Observatorio Regional</h1>
+        {% block stylesheets %}
+            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+            {{ encore_entry_link_tags('app') }}
 
-    <strong>Acceder a Consulta de Datos</strong>
-    <strong>Acceder a Gestión de la Información</strong>
-{% endblock %}
+            <!-- Renders a link tag (if your module requires any CSS)
+                 <link rel="stylesheet" href="/build/app.css"> -->
+        {% endblock %}
+    </head>
+    {% block body %}
+        <body>
+            <strong>Acceder a Consulta de Datos</strong>
+            <strong>Acceder a Gestión de la Información</strong>
+
+            {% block javascripts %}
+                {{ encore_entry_script_tags('app') }}
+
+                <!-- Renders app.js & a webpack runtime.js file
+                    <script src="/build/runtime.js"></script>
+                    <script src="/build/app.js"></script> -->
+            {% endblock %}
+        </body>
+        
+    {% endblock %}
+</html>
+
+
+
+
+    
