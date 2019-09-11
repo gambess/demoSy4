@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PanelSolar index{% endblock %}
+
+{% block body %}
+    <h1>PanelSolar index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for panel_solar in panel_solars %}
+            <tr>
+                <td>{{ panel_solar.id }}</td>
+                <td>
+                    <a href="{{ path('panel_solar_show', {'id': panel_solar.id}) }}">show</a>
+                    <a href="{{ path('panel_solar_edit', {'id': panel_solar.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('panel_solar_new') }}">Create new</a>
+{% endblock %}

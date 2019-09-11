@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Casa{% endblock %}
+
+{% block body %}
+    <h1>Casa</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ casa.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ casa.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Personas</th>
+                <td>{{ casa.personas }}</td>
+            </tr>
+            <tr>
+                <th>Longitud</th>
+                <td>{{ casa.longitud }}</td>
+            </tr>
+            <tr>
+                <th>Latitud</th>
+                <td>{{ casa.latitud }}</td>
+            </tr>
+            <tr>
+                <th>Altura</th>
+                <td>{{ casa.altura }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('casa_index') }}">back to list</a>
+
+    <a href="{{ path('casa_edit', {'id': casa.id}) }}">edit</a>
+
+    {{ include('casa/_delete_form.html.twig') }}
+{% endblock %}

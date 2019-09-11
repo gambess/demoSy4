@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit CasetaSanitaria{% endblock %}
+
+{% block body %}
+    <h1>Edit CasetaSanitaria</h1>
+
+    {{ include('caseta_sanitaria/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('caseta_sanitaria_index') }}">back to list</a>
+
+    {{ include('caseta_sanitaria/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tabla Resumen Sector {{ subsector.nombre }} {% endblock %}
+
+{% block body %}
+    <h1>Sector {{ subsector.nombre }}</h1>
+    <h2>Resumen</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LOCALIDAD</th>
+                <th>PRIORIDAD</th>
+                <th>PERSONAS</th>
+                <th>MOTIVO</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for localidad in localidads %}
+            <tr>
+                <td><a href="{{ path('localidad_show', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
+                <td>{{ localidad.prioridad }}</td>
+                <td>{{ localidad.personas }}</td>
+                <td>{{ localidad.motivo }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('subsector_index') }}">back to list</a>
+{% endblock %}

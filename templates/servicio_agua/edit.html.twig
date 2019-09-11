@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ServicioAgua{% endblock %}
+
+{% block body %}
+    <h1>Edit ServicioAgua</h1>
+
+    {{ include('servicio_agua/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('servicio_agua_index') }}">back to list</a>
+
+    {{ include('servicio_agua/_delete_form.html.twig') }}
+{% endblock %}

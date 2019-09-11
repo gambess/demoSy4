@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CasetaSanitaria{% endblock %}
+
+{% block body %}
+    <h1>Create new CasetaSanitaria</h1>
+
+    {{ include('caseta_sanitaria/_form.html.twig') }}
+
+    <a href="{{ path('caseta_sanitaria_index') }}">back to list</a>
+{% endblock %}

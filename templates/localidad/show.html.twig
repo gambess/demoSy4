@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Localidad{% endblock %}
+
+{% block body %}
+    <h1>Localidad</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ localidad.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ localidad.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ localidad.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Altura</th>
+                <td>{{ localidad.altura }}</td>
+            </tr>
+            <tr>
+                <th>Personas</th>
+                <td>{{ localidad.personas }}</td>
+            </tr>
+            <tr>
+                <th>Casas</th>
+                <td>{{ localidad.casas }}</td>
+            </tr>
+            <tr>
+                <th>Pararrayos</th>
+                <td>{{ localidad.pararrayos }}</td>
+            </tr>
+            <tr>
+                <th>Prioridad</th>
+                <td>{{ localidad.prioridad }}</td>
+            </tr>
+            <tr>
+                <th>AlumbradoPublico</th>
+                <td>{{ localidad.alumbradoPublico }}</td>
+            </tr>
+            <tr>
+                <th>Motivo</th>
+                <td>{{ localidad.motivo }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion</th>
+                <td>{{ localidad.descripcion }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('localidad_index') }}">back to list</a>
+
+    <a href="{{ path('localidad_edit', {'id': localidad.id}) }}">edit</a>
+
+    {{ include('localidad/_delete_form.html.twig') }}
+{% endblock %}

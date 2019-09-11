@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ServicioLuz{% endblock %}
+
+{% block body %}
+    <h1>Create new ServicioLuz</h1>
+
+    {{ include('servicio_luz/_form.html.twig') }}
+
+    <a href="{{ path('servicio_luz_index') }}">back to list</a>
+{% endblock %}

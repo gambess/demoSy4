@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Casa{% endblock %}
+
+{% block body %}
+    <h1>Edit Casa</h1>
+
+    {{ include('casa/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('casa_index') }}">back to list</a>
+
+    {{ include('casa/_delete_form.html.twig') }}
+{% endblock %}

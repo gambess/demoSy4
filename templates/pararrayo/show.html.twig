@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pararrayo{% endblock %}
+
+{% block body %}
+    <h1>Pararrayo</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pararrayo.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('pararrayo_index') }}">back to list</a>
+
+    <a href="{{ path('pararrayo_edit', {'id': pararrayo.id}) }}">edit</a>
+
+    {{ include('pararrayo/_delete_form.html.twig') }}
+{% endblock %}

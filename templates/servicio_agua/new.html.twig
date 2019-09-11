@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ServicioAgua{% endblock %}
+
+{% block body %}
+    <h1>Create new ServicioAgua</h1>
+
+    {{ include('servicio_agua/_form.html.twig') }}
+
+    <a href="{{ path('servicio_agua_index') }}">back to list</a>
+{% endblock %}

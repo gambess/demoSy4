@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tabla Resumen Sector {{ subsector.nombre }} {% endblock %}
+
+{% block body %}
+    <h1>Sector {{ subsector.nombre }}</h1>
+    <h2>Resumen</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LOCALIDADES</th>
+                <th>PRIORIDAD</th>
+                <th>PORCENTAJES</th>
+                <th>BENEFICIARIOS</th>
+            </tr>
+        </thead>
+        <tbody>
+        {# Definicion de variables #}
+        {%  set total_registros = localidads|length %} 
+        
+        {% set label_prioridad_alta = 'Alta' %}
+        {% set count_localidades_alta = 0 %}
+        {% set count_personas_alta = 0 %}
+        
+        {% set label_prioridad_media = 'Media' %}
+        {% set count_personas_media = 0 %}
+        {% set count_localidades_media = 0 %}
+       
+        {% set label_prioridad_nula = 'Nula' %}
+        {% set count_localidades_nula = 0 %}
+        {% set count_personas_nula = 0 %}
+            
+        {% for localidad in localidads %}
+            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'A'%}
+                {% set count_localidades_alta = count_localidades_alta + 1 %}
+                {% set count_personas_alta = count_personas_alta + localidad.personas %}
+            {% endif %}
+            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'M'%}
+                {% set count_localidades_media = count_localidades_media + 1 %}
+                {% set count_personas_media = count_personas_media + localidad.personas %}
+            {% endif %}
+            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'N'%}
+                {% set count_localidades_nula = count_localidades_nula + 1 %}
+                {% set count_personas_nula = count_personas_nula + localidad.personas %}
+            {% endif %}
+        {% endfor %}
+            <tr>
+                <td>{{ count_localidades_alta }}</td>
+                <td>{{ label_prioridad_alta }}</td>
+                <td>{{ (count_localidades_alta / total_registros * 100)|round}}%</td>
+                <td>{{ count_personas_alta }} aprox.</td>
+            </tr>
+            <tr>
+                <td>{{ count_localidades_media }}</td>
+                <td>{{ label_prioridad_media }}</td>
+                <td>{{ (count_localidades_media / total_registros * 100)|round}}%</td>
+                <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_media }} aprox.{% endif %}</td>
+            </tr>
+            <tr>
+                <td>{{ count_localidades_nula }}</td>
+                <td>{{ label_prioridad_nula }}</td>
+                <td>{{ (count_localidades_nula / total_registros * 100)|round}}%</td>
+                <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_nula }} aprox.{% endif %}</td>
+            </tr>
+
+        
+        
+        </tbody>
+    </table>
+
+    <a href="{{ path('subsector_index') }}">back to list</a>
+{% endblock %}

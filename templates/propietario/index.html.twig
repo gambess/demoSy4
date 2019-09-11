@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Propietario index{% endblock %}
+
+{% block body %}
+    <h1>Propietario index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido1</th>
+                <th>Apellido2</th>
+                <th>TipoDocumento</th>
+                <th>NumeroDocumento</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for propietario in propietarios %}
+            <tr>
+                <td>{{ propietario.id }}</td>
+                <td>{{ propietario.nombre }}</td>
+                <td>{{ propietario.apellido1 }}</td>
+                <td>{{ propietario.apellido2 }}</td>
+                <td>{{ propietario.tipoDocumento }}</td>
+                <td>{{ propietario.numeroDocumento }}</td>
+                <td>
+                    <a href="{{ path('propietario_show', {'id': propietario.id}) }}">show</a>
+                    <a href="{{ path('propietario_edit', {'id': propietario.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('propietario_new') }}">Create new</a>
+{% endblock %}

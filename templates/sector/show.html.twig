@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sector{% endblock %}
+
+{% block body %}
+    <h1>Sector</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sector.id }}</td>
+            </tr>
+            <tr>
+                <th>Codigo</th>
+                <td>{{ sector.codigo }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ sector.nombre }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sector_index') }}">back to list</a>
+
+    <a href="{{ path('sector_edit', {'id': sector.id}) }}">edit</a>
+
+    {{ include('sector/_delete_form.html.twig') }}
+{% endblock %}

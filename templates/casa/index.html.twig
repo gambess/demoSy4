@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Casa index{% endblock %}
+
+{% block body %}
+    <h1>Casa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Personas</th>
+                <th>Longitud</th>
+                <th>Latitud</th>
+                <th>Altura</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for casa in casas %}
+            <tr>
+                <td>{{ casa.id }}</td>
+                <td>{{ casa.nombre }}</td>
+                <td>{{ casa.personas }}</td>
+                <td>{{ casa.longitud }}</td>
+                <td>{{ casa.latitud }}</td>
+                <td>{{ casa.altura }}</td>
+                <td>
+                    <a href="{{ path('casa_show', {'id': casa.id}) }}">show</a>
+                    <a href="{{ path('casa_edit', {'id': casa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('casa_new') }}">Create new</a>
+{% endblock %}
