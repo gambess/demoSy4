@@ -7,46 +7,47 @@
     <br/>
     <br/>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Sector</th>
-                <th>Altura</th>
-                <th>Personas</th>
-                <th>Casas</th>
-                <th>Pararrayos</th>
-                <th>Prioridad</th>
-                <th>AlumbradoPublico</th>
-                <th>Motivo</th>
-                
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for localidad in localidads %}
-            <tr>
-                <td>{{ localidad.nombre }}</td>
-                <td>{{ localidad.subsector.nombre }}</td>
-                <td>{{ localidad.altura }}</td>
-                <td>{{ localidad.personas }}</td>
-                <td>{{ localidad.casas }}</td>
-                <td>{{ localidad.pararrayos }}</td>
-                <td>{{ localidad.prioridad }}</td>
-                <td>{{ localidad.alumbradoPublico }}</td>
-                <td>{{ localidad.motivo }}</td>
-                <td>
-                    <a href="{{ path('localidad_show', {'id': localidad.id}) }}">Ver</a>
-                    <a href="{{ path('localidad_edit', {'id': localidad.id}) }}">Editar</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-<br/>
+    <div class="container">
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sector</th>
+                    <th>Altura</th>
+                    <th>Personas</th>
+                    <th>Casas</th>
+                    <th>Pararrayos</th>
+                    <th>Prioridad</th>
+                    <th>AlumbradoPublico</th>
+                    <th>Motivo</th>
+
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for localidad in localidads %}
+                    <tr>
+                        <td><a href="{{ path('localidad_show', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
+                        <td>{{ localidad.subsector.nombre }}</td>
+                        <td>{{ localidad.altura }}</td>
+                        <td>{{ localidad.personas }}</td>
+                        <td>{{ localidad.casas }}</td>
+                        <td>{{ localidad.pararrayos }}</td>
+                        <td>{{ localidad.prioridad }}</td>
+                        <td>{{ localidad.alumbradoPublico }}</td>
+                        <td>{{ localidad.motivo }}</td>
+                        <td>
+                            <a href="{{ path('localidad_edit', {'id': localidad.id}) }}">Editar</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <br/>
     <a href="{{ path('localidad_new') }}">Añadir Localidad</a>
 {% endblock %}

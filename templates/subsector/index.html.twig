@@ -3,40 +3,40 @@
 {% block title %}Listado de Sectores{% endblock %}
 
 {% block body %}
-    
+
     <center><h1>Listado de Sectores</h1></center>
     <br/>
     <br/>
     <div class="container">
-       <table class="table">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Altura</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for subsector in subsectors %}
-            <tr>
-                <td>{{ subsector.nombre }}</td>
-                <td>{{ subsector.altura }}</td>
-                <td>
-                    <a href="{{ path('subsector_show', {'id': subsector.id}) }}">Ver</a>
-                    <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
-                    <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Tabla Resumen</a>
-                    <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Tabla Resumen por Prioridad</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table> 
+        <table class="table table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Altura</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for subsector in subsectors %}
+                    <tr>
+                        <td>{{ subsector.nombre }}</td>
+                        <td>{{ subsector.altura }}</td>
+                        <td>
+                            <a href="{{ path('subsector_show', {'id': subsector.id}) }}">Ver</a>
+                            <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
+                            <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Tabla Resumen</a>
+                            <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Tabla Resumen por Prioridad</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table> 
     </div>
-    
+
 
     <a href="{{ path('subsector_new') }}">Añadir Sector</a>
 {% endblock %}
