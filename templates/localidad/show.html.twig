@@ -5,7 +5,8 @@
 {% block body %}
     <center><h1>{{ localidad.nombre|upper }}</h1></center>
     <br/>
-    <table class="table">
+    <div class="container">
+        <table class="table">
         <tbody>
             
             <tr>
@@ -50,6 +51,7 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
     <a class="btn btn-primary" href="{{ path('localidad_index') }}" role="button">Volver al Listado</a>
 

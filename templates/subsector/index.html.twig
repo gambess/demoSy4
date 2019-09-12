@@ -19,13 +19,13 @@
             <tbody>
                 {% for subsector in subsectors %}
                     <tr>
-                        <td>{{ subsector.nombre }}</td>
+                        <td><a href="{{ path('subsector_show', {'id': subsector.id}) }}" title="Ver Ficha del Sector: {{ subsector.nombre }}">{{ subsector.nombre }}</a></td>
                         <td>{{ subsector.altura }}</td>
                         <td>
-                            <a href="{{ path('subsector_show', {'id': subsector.id}) }}">Ver</a>
+                            
                             <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
-                            <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Tabla Resumen</a>
-                            <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Tabla Resumen por Prioridad</a>
+                            <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Resumen</a>
+                            <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Prioridades</a>
                         </td>
                     </tr>
                 {% else %}

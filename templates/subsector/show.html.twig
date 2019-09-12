@@ -1,24 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subsector{% endblock %}
+{% block title %}{{ subsector.nombre }}{% endblock %}
 
 {% block body %}
-    <h1>Subsector</h1>
-
-    <table class="table">
+    <center><h1>{{ subsector.nombre | upper}}</h1></center>
+    <br />
+    <div class="container">
+        <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ subsector.id }}</td>
-            </tr>
-            <tr>
-                <th>Codigo</th>
-                <td>{{ subsector.codigo }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ subsector.nombre }}</td>
-            </tr>
             <tr>
                 <th>Altura</th>
                 <td>{{ subsector.altura }}</td>
@@ -29,10 +18,10 @@
             </tr>
         </tbody>
     </table>
+    </div>
 
-    <a href="{{ path('subsector_index') }}">back to list</a>
-
-    <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">edit</a>
+    <a href="{{ path('subsector_index') }}">Volver al listado</a>
+    <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
 
     {{ include('subsector/_delete_form.html.twig') }}
 {% endblock %}
