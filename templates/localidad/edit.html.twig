@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editar Localidad{% endblock %}
+{% block title %}Editar localidad: {{ localidad.nombre }}{% endblock %}
 
 {% block body %}
-    <center><h1>Edit Localidad</h1></center>
+    <center><h1>{{ localidad.nombre |upper}}</h1></center>
     <div class="container">
         {{ include('localidad/_form.html.twig', {'button_label': 'Update'}) }}
     </div>
