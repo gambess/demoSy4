@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tabla Resumen Sector: {{ subsector.nombre }} {% endblock %}
+{% block title %}Resumen Sector: {{ subsector.nombre }} {% endblock %}
 
 {% block body %}
-    <center><h1>Tabla Resumen</h1></center>
+    <center><h1>Resumen</h1></center>
     <br/>
-    <center><h2>Sector: {{ subsector.nombre }}</h2></center>
+    <center><h2>Sector: {{ subsector.nombre |upper }}</h2></center>
     <br/>
 
     <div class="container">
