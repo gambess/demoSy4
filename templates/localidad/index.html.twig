@@ -3,14 +3,15 @@
 {% block title %}Localidad index{% endblock %}
 
 {% block body %}
-    <h1>Localidad index</h1>
+    <center><h1>Listado de Localidades</h1></center>
+    <br/>
+    <br/>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Codigo</th>
                 <th>Nombre</th>
+                <th>Sector</th>
                 <th>Altura</th>
                 <th>Personas</th>
                 <th>Casas</th>
@@ -18,16 +19,15 @@
                 <th>Prioridad</th>
                 <th>AlumbradoPublico</th>
                 <th>Motivo</th>
-                <th>Descripcion</th>
+                
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for localidad in localidads %}
             <tr>
-                <td>{{ localidad.id }}</td>
-                <td>{{ localidad.codigo }}</td>
                 <td>{{ localidad.nombre }}</td>
+                <td>{{ localidad.subsector.nombre }}</td>
                 <td>{{ localidad.altura }}</td>
                 <td>{{ localidad.personas }}</td>
                 <td>{{ localidad.casas }}</td>
@@ -35,10 +35,9 @@
                 <td>{{ localidad.prioridad }}</td>
                 <td>{{ localidad.alumbradoPublico }}</td>
                 <td>{{ localidad.motivo }}</td>
-                <td>{{ localidad.descripcion }}</td>
                 <td>
-                    <a href="{{ path('localidad_show', {'id': localidad.id}) }}">show</a>
-                    <a href="{{ path('localidad_edit', {'id': localidad.id}) }}">edit</a>
+                    <a href="{{ path('localidad_show', {'id': localidad.id}) }}">Ver</a>
+                    <a href="{{ path('localidad_edit', {'id': localidad.id}) }}">Editar</a>
                 </td>
             </tr>
         {% else %}
@@ -48,6 +47,6 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('localidad_new') }}">Create new</a>
+<br/>
+    <a href="{{ path('localidad_new') }}">Añadir Localidad</a>
 {% endblock %}

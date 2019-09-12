@@ -1,35 +1,14 @@
-{#{% extends 'base.html.twig' %}#}
+{% extends 'base.html.twig' %}
 
-<!DOCTYPE html>
-<html>
-    <head>
-        {% block title %}Observatorio Regional{% endblock %}
-{#        <title>Observatorio Regional</title>#}
+{% block title %}Observatorio Regional{% endblock %}
 
-        {% block stylesheets %}
-            {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-            {{ encore_entry_link_tags('app') }}
+{% block body %}     
+    <h1>Bienvenidos al nuevo Observatorio Comunal</h1>
+    <h2>Áreas</h2>
+    <a class="btn btn-primary" href="/subsector" role="button">Consulta de Datos</a>
+    <a class="btn btn-secondary" href="/localidad" role="button">Gestión de las Localidades</a>
+{% endblock %}
 
-            <!-- Renders a link tag (if your module requires any CSS)
-                 <link rel="stylesheet" href="/build/app.css"> -->
-        {% endblock %}
-    </head>
-    {% block body %}
-        <body>
-            <strong>Acceder a Consulta de Datos</strong>
-            <strong>Acceder a Gestión de la Información</strong>
-
-            {% block javascripts %}
-                {{ encore_entry_script_tags('app') }}
-
-                <!-- Renders app.js & a webpack runtime.js file
-                    <script src="/build/runtime.js"></script>
-                    <script src="/build/app.js"></script> -->
-            {% endblock %}
-        </body>
-        
-    {% endblock %}
-</html>
 
 
 

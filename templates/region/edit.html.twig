@@ -4,6 +4,8 @@
 
 {% block body %}
     <h1>Edit Region</h1>
+    
+    {% form_theme form 'bootstrap_4_layout.html.twig' %}
 
     {{ include('region/_form.html.twig', {'button_label': 'Update'}) }}
 

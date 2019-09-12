@@ -1,34 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Subsector index{% endblock %}
+{% block title %}Listado de Sectores{% endblock %}
 
 {% block body %}
-    <h1>Subsector index</h1>
+    
+    <center><h1>Listado de Sectores</h1></center>
+    <br/>
+    <br/>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Codigo</th>
                 <th>Nombre</th>
                 <th>Altura</th>
-                <th>Descripcion</th>
-                <th>actions</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for subsector in subsectors %}
             <tr>
-                <td>{{ subsector.id }}</td>
-                <td>{{ subsector.codigo }}</td>
                 <td>{{ subsector.nombre }}</td>
                 <td>{{ subsector.altura }}</td>
-                <td>{{ subsector.descripcion }}</td>
                 <td>
-                    <a href="{{ path('subsector_show', {'id': subsector.id}) }}">show</a>
-                    <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">edit</a>
-                    <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">show summary</a>
-                    <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">show summary by priority</a>
+                    <a href="{{ path('subsector_show', {'id': subsector.id}) }}">Ver</a>
+                    <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
+                    <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Tabla Resumen</a>
+                    <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Tabla Resumen por Prioridad</a>
                 </td>
             </tr>
         {% else %}
@@ -39,5 +36,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('subsector_new') }}">Create new</a>
+    <a href="{{ path('subsector_new') }}">Añadir Sector</a>
 {% endblock %}

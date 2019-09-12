@@ -1,10 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tabla Resumen Sector {{ subsector.nombre }} {% endblock %}
+{% block title %}Tabla Resumen Sector: {{ subsector.nombre }} {% endblock %}
 
 {% block body %}
-    <h1>Sector {{ subsector.nombre }}</h1>
-    <h2>Resumen</h2>
+    <center><h1>Tabla Resumen</h1></center>
+    <br/>
+    <center><h2>Sector: {{ subsector.nombre }}</h2></center>
+    <br/>
 
     <table class="table">
         <thead>
@@ -31,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('subsector_index') }}">back to list</a>
+    <a href="{{ path('subsector_index') }}">Volver al Listado</a>
 {% endblock %}
