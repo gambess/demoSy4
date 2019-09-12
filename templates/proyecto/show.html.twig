@@ -1,22 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Proyecto{% endblock %}
+{% block title %}Detalle de Proyecto {{ proyecto.nombre }}{% endblock %}
 
 {% block body %}
-    <h1>Proyecto</h1>
-
+    <center><h1>{{ proyecto.nombre |upper}}</h1></center>
+<div class="container">
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ proyecto.id }}</td>
+                <th>Localidad</th>
+                <td>{{ proyecto.localidad.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Codigo B.I.P</th>
+                <td>{{ proyecto.codigoBip }}</td>
+            </tr>
+            <tr>
+                <th>Tipologia de Acción Solicitada</th>
+                <td>{{ proyecto.tipologiaAccion }}</td>
+            </tr>
+            <tr>
+                <th>Justificacion</th>
+                <td>{{ proyecto.justificacion }}</td>
+            </tr>
+            <tr>
+                <th>Descripcion de la acción solicitada</th>
+                <td>{{ proyecto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th>Programa</th>
+                <td>{{ proyecto.programa }}</td>
+            </tr>
+            <tr>
+                <th>Estimación Beneficiarios Directos</th>
+                <td>{{ proyecto.beneficiariosDirectos }}</td>
+            </tr>
+            <tr>
+                <th>Estimación Beneficiarios Indirectos</th>
+                <td>{{ proyecto.beneficiariosIndirectos }}</td>
+            </tr>
+            <tr>
+                <th>Estimación Viviendas Incorporadas</th>
+                <td>{{ proyecto.estimadoViviendas }}</td>
+            </tr>
+            <tr>
+                <th>Fecha</th>
+                <td>{{ proyecto.fecha ? proyecto.fecha|date('Y-m-d') : '' }}</td>
             </tr>
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('proyecto_index') }}">back to list</a>
+    <a href="{{ path('proyecto_index') }}">Volver al listado</a>
 
-    <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}">edit</a>
+    <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}">Editar</a>
 
     {{ include('proyecto/_delete_form.html.twig') }}
 {% endblock %}

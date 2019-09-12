@@ -36,6 +36,20 @@ class Subsector
     private $descripcion;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codigo", type="string", length=255, nullable=false)
+     */
+    private $codigo;
+
+    /**
      * @var \Sector
      *
      * @ORM\ManyToOne(targetEntity="Sector")
@@ -44,16 +58,6 @@ class Subsector
      * })
      */
     private $sector;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nombre;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $codigo;
 
     public function getId(): ?int
     {
@@ -84,18 +88,6 @@ class Subsector
         return $this;
     }
 
-    public function getSector(): ?Sector
-    {
-        return $this->sector;
-    }
-
-    public function setSector(?Sector $sector): self
-    {
-        $this->sector = $sector;
-
-        return $this;
-    }
-
     public function getNombre(): ?string
     {
         return $this->nombre;
@@ -116,6 +108,18 @@ class Subsector
     public function setCodigo(string $codigo): self
     {
         $this->codigo = $codigo;
+
+        return $this;
+    }
+
+    public function getSector(): ?Sector
+    {
+        return $this->sector;
+    }
+
+    public function setSector(?Sector $sector): self
+    {
+        $this->sector = $sector;
 
         return $this;
     }

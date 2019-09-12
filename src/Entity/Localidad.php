@@ -47,21 +47,21 @@ class Localidad
      *
      * @ORM\Column(name="personas", type="integer", nullable=false)
      */
-    private $personas = '0';
+    private $personas;
 
     /**
      * @var int
      *
      * @ORM\Column(name="casas", type="integer", nullable=false)
      */
-    private $casas = '0';
+    private $casas;
 
     /**
      * @var int
      *
      * @ORM\Column(name="pararrayos", type="integer", nullable=false)
      */
-    private $pararrayos = '0';
+    private $pararrayos;
 
     /**
      * @var string
@@ -92,14 +92,14 @@ class Localidad
     private $descripcion;
 
     /**
-     * @var \Subsector
+     * @var \Comuna
      *
-     * @ORM\ManyToOne(targetEntity="Subsector")
+     * @ORM\ManyToOne(targetEntity="Comuna")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="comuna_id", referencedColumnName="id")
      * })
      */
-    private $subsector;
+    private $comuna;
 
     /**
      * @var \Sector
@@ -112,14 +112,14 @@ class Localidad
     private $sector;
 
     /**
-     * @var \Comuna
+     * @var \Subsector
      *
-     * @ORM\ManyToOne(targetEntity="Comuna")
+     * @ORM\ManyToOne(targetEntity="Subsector")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="comuna_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
      * })
      */
-    private $comuna;
+    private $subsector;
 
     public function getId(): ?int
     {
@@ -246,14 +246,14 @@ class Localidad
         return $this;
     }
 
-    public function getSubsector(): ?Subsector
+    public function getComuna(): ?Comuna
     {
-        return $this->subsector;
+        return $this->comuna;
     }
 
-    public function setSubsector(?Subsector $subsector): self
+    public function setComuna(?Comuna $comuna): self
     {
-        $this->subsector = $subsector;
+        $this->comuna = $comuna;
 
         return $this;
     }
@@ -270,14 +270,14 @@ class Localidad
         return $this;
     }
 
-    public function getComuna(): ?Comuna
+    public function getSubsector(): ?Subsector
     {
-        return $this->comuna;
+        return $this->subsector;
     }
 
-    public function setComuna(?Comuna $comuna): self
+    public function setSubsector(?Subsector $subsector): self
     {
-        $this->comuna = $comuna;
+        $this->subsector = $subsector;
 
         return $this;
     }

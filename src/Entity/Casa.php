@@ -67,14 +67,14 @@ class Casa
     private $localidad;
 
     /**
-     * @var \Subsector
+     * @var \Propietario
      *
-     * @ORM\ManyToOne(targetEntity="Subsector")
+     * @ORM\ManyToOne(targetEntity="Propietario")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="propietario_id", referencedColumnName="id")
      * })
      */
-    private $subsector;
+    private $propietario;
 
     /**
      * @var \Sector
@@ -87,14 +87,14 @@ class Casa
     private $sector;
 
     /**
-     * @var \Propietario
+     * @var \Subsector
      *
-     * @ORM\ManyToOne(targetEntity="Propietario")
+     * @ORM\ManyToOne(targetEntity="Subsector")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="propietario_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
      * })
      */
-    private $propietario;
+    private $subsector;
 
     public function getId(): ?int
     {
@@ -173,14 +173,14 @@ class Casa
         return $this;
     }
 
-    public function getSubsector(): ?Subsector
+    public function getPropietario(): ?Propietario
     {
-        return $this->subsector;
+        return $this->propietario;
     }
 
-    public function setSubsector(?Subsector $subsector): self
+    public function setPropietario(?Propietario $propietario): self
     {
-        $this->subsector = $subsector;
+        $this->propietario = $propietario;
 
         return $this;
     }
@@ -197,14 +197,14 @@ class Casa
         return $this;
     }
 
-    public function getPropietario(): ?Propietario
+    public function getSubsector(): ?Subsector
     {
-        return $this->propietario;
+        return $this->subsector;
     }
 
-    public function setPropietario(?Propietario $propietario): self
+    public function setSubsector(?Subsector $subsector): self
     {
-        $this->propietario = $propietario;
+        $this->subsector = $subsector;
 
         return $this;
     }
