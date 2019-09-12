@@ -8,30 +8,32 @@
     <center><h2>Sector: {{ subsector.nombre }}</h2></center>
     <br/>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>LOCALIDAD</th>
-                <th>PRIORIDAD</th>
-                <th>PERSONAS</th>
-                <th>MOTIVO</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for localidad in localidads %}
-            <tr>
-                <td><a href="{{ path('localidad_show', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
-                <td>{{ localidad.prioridad }}</td>
-                <td>{{ localidad.personas }}</td>
-                <td>{{ localidad.motivo }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="12">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>LOCALIDAD</th>
+                    <th>PRIORIDAD</th>
+                    <th>PERSONAS</th>
+                    <th>MOTIVO</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for localidad in localidads %}
+                    <tr>
+                        <td><a href="{{ path('localidad_show', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
+                        <td>{{ localidad.prioridad }}</td>
+                        <td>{{ localidad.personas }}</td>
+                        <td>{{ localidad.motivo }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <a href="{{ path('subsector_index') }}">Volver al Listado</a>
-{% endblock %}
+        <a href="{{ path('subsector_index') }}">Volver al Listado</a>
+    {% endblock %}

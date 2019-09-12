@@ -8,8 +8,9 @@
     <center><h2>Sector: {{ subsector.nombre }}</h2></center>
     <br/>
 
-    <table class="table">
-        <thead>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
             <tr>
                 <th>LOCALIDADES</th>
                 <th>PRIORIDAD</th>
@@ -28,6 +29,10 @@
         {% set label_prioridad_media = 'Media' %}
         {% set count_personas_media = 0 %}
         {% set count_localidades_media = 0 %}
+        
+        {% set label_prioridad_baja = 'Baja' %}
+        {% set count_personas_baja = 0 %}
+        {% set count_localidades_baja = 0 %}
        
         {% set label_prioridad_nula = 'Nula' %}
         {% set count_localidades_nula = 0 %}
@@ -42,34 +47,56 @@
                 {% set count_localidades_media = count_localidades_media + 1 %}
                 {% set count_personas_media = count_personas_media + localidad.personas %}
             {% endif %}
+            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'B'%}
+                {% set count_localidades_baja = count_localidades_baja + 1 %}
+                {% set count_personas_baja = count_personas_baja + localidad.personas %}
+            {% endif %}
             {%if  localidad.prioridad is defined and localidad.prioridad starts with 'N'%}
                 {% set count_localidades_nula = count_localidades_nula + 1 %}
                 {% set count_personas_nula = count_personas_nula + localidad.personas %}
             {% endif %}
         {% endfor %}
-            <tr>
-                <td>{{ count_localidades_alta }}</td>
-                <td>{{ label_prioridad_alta }}</td>
-                <td>{{ (count_localidades_alta / total_registros * 100)|round}}%</td>
-                <td>{{ count_personas_alta }} aprox.</td>
-            </tr>
-            <tr>
-                <td>{{ count_localidades_media }}</td>
-                <td>{{ label_prioridad_media }}</td>
-                <td>{{ (count_localidades_media / total_registros * 100)|round}}%</td>
-                <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_media }} aprox.{% endif %}</td>
-            </tr>
-            <tr>
-                <td>{{ count_localidades_nula }}</td>
-                <td>{{ label_prioridad_nula }}</td>
-                <td>{{ (count_localidades_nula / total_registros * 100)|round}}%</td>
-                <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_nula }} aprox.{% endif %}</td>
-            </tr>
+            {%if  count_localidades_alta > 0%}
+                <tr>
+                    <td>{{ count_localidades_alta }}</td>
+                    <td>{{ label_prioridad_alta }}</td>
+                    <td>{{ (count_localidades_alta / total_registros * 100)|round}}%</td>
+                    <td>{{ count_personas_alta }} aprox.</td>
+                </tr>
+            {% endif %}
+            {%if  count_localidades_media > 0%}
+                <tr>
+                    <td>{{ count_localidades_media }}</td>
+                    <td>{{ label_prioridad_media }}</td>
+                    <td>{{ (count_localidades_media / total_registros * 100)|round}}%</td>
+                    <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_media }} aprox.{% endif %}</td>
+                </tr>
+            {% endif %}
+            {%if  count_localidades_baja > 0%}
+                <tr>
+                    <td>{{ count_localidades_baja }}</td>
+                    <td>{{ label_prioridad_baja }}</td>
+                    <td>{{ (count_localidades_baja / total_registros * 100)|round}}%</td>
+                    <td>{% if  count_personas_baja == 0%}s/i{% else %}{{ count_personas_baja }} aprox.{% endif %}</td>
+                </tr>
+            {% endif %}
+            {%if  count_localidades_nula > 0%}
+                <tr>
+                    <td>{{ count_localidades_nula }}</td>
+                    <td>{{ label_prioridad_nula }}</td>
+                    <td>{{ (count_localidades_nula / total_registros * 100)|round}}%</td>
+                    <td>{% if  count_personas_nula == 0%}s/i{% else %}{{ count_personas_nula }} aprox.{% endif %}</td>
+                </tr>
+            {% endif %}
+            
+            
+            
+            
 
         
         
         </tbody>
     </table>
 
-    <a href="{{ path('subsector_index') }}">back to list</a>
+    <a href="{{ path('subsector_index') }}">Volver al listado</a>
 {% endblock %}

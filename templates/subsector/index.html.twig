@@ -7,13 +7,13 @@
     <center><h1>Listado de Sectores</h1></center>
     <br/>
     <br/>
-
-    <table class="table">
-        <thead>
+    <div class="container">
+       <table class="table">
+        <thead class="thead-dark">
             <tr>
-                <th>Nombre</th>
-                <th>Altura</th>
-                <th>Acciones</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Altura</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +34,9 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
+    </table> 
+    </div>
+    
 
     <a href="{{ path('subsector_new') }}">Añadir Sector</a>
 {% endblock %}
