@@ -1,18 +1,29 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Bienvenido al nuevo Observatorio Comunal{% endblock %}
-
-{% block body %}     
-    <h1>Observatorio Comunal</h1>
-    <br />
-    <br />
-    <a class="btn btn-primary" href="/subsector" role="button">Consulta de Datos</a>
-    <a class="btn btn-primary" href="/proyecto" role="button">Gestión de Proyectos</a>
-    <a class="btn btn-secondary" href="/localidad" role="button">Gestión de las Localidades</a>
+{% block body %}
+    <section class="jumbotron text-center">
+        <div class="card-deck">
+            <div class="col d-flex justify-content-center col-sm-6">
+                <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                    <div class="card-header">Acceder a:</div>
+                    <div class="card-body">
+                        <a href="/subsector" class="btn btn-warning">Consultar Datos </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col d-flex justify-content-center col-sm-6">
+                <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                    <div class="card-header">Acceder a:</div>
+                    <div class="card-body">
+                        <a href="/manager" class="btn btn-warning">Gestionar Información</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
 {% endblock %}
 
 
 
 
 
-    
+

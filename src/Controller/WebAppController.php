@@ -18,5 +18,14 @@ class WebAppController extends AbstractController
     {
         return $this->render('webapp/index.html.twig');
     }
+    
+    /**
+     * @Route("/manager", name="web_app_manager", methods={"GET"})
+     */
+    public function manager(): Response
+    {
+        
+        return $this->render('webapp/manager.html.twig');
+    }
 
 }
