@@ -1,0 +1,18 @@
+body {
+    /*background-color: lightgray;*/
+}
+
+.new-footer {
+    background: url(/build/images/new_footer.5fb41ecf.png) no-repeat;
+    background-size: cover;
+    width: auto;
+}
+
+.jumbotron{
+    background: #FFFFFF;
+    border: 2px solid #FFC107;
+    margin-top: 20px;
+}
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLCtCQUErQjtBQUNuQzs7QUFFQTtJQUNJLG1EQUErRDtJQUMvRCxzQkFBc0I7SUFDdEIsV0FBVztBQUNmOztBQUVBO0lBQ0ksbUJBQW1CO0lBQ25CLHlCQUF5QjtJQUN6QixnQkFBZ0I7QUFDcEIiLCJmaWxlIjoiYXBwLmNzcyIsInNvdXJjZXNDb250ZW50IjpbImJvZHkge1xuICAgIC8qYmFja2dyb3VuZC1jb2xvcjogbGlnaHRncmF5OyovXG59XG5cbi5uZXctZm9vdGVyIHtcbiAgICBiYWNrZ3JvdW5kOiB1cmwoJy4uLy4uL2Fzc2V0cy9pbWFnZXMvbmV3X2Zvb3Rlci5wbmcnKSBuby1yZXBlYXQ7XG4gICAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcbiAgICB3aWR0aDogYXV0bztcbn1cblxuLmp1bWJvdHJvbntcbiAgICBiYWNrZ3JvdW5kOiAjRkZGRkZGO1xuICAgIGJvcmRlcjogMnB4IHNvbGlkICNGRkMxMDc7XG4gICAgbWFyZ2luLXRvcDogMjBweDtcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0=*/

@@ -5,7 +5,7 @@ body {
 .new-footer {
     background: url('../../assets/images/new_footer.png') no-repeat;
     background-size: cover;
-    /*width: 100%;*/
+    width: auto;
 }
 
 .jumbotron{
