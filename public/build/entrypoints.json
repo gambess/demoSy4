@@ -4,21 +4,18 @@
       "js": [
         "/build/runtime.js",
         "/build/vendors~app.js",
-        "/build/app~global.js",
         "/build/app.js"
       ],
       "css": [
-        "/build/app~global.css",
         "/build/app.css"
       ]
     },
     "global": {
       "js": [
-        "/build/runtime.js",
-        "/build/app~global.js"
+        "/build/runtime.js"
       ],
       "css": [
-        "/build/app~global.css"
+        "/build/global.css"
       ]
     }
   }
