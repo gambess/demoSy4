@@ -15,6 +15,9 @@ Encore
         .cleanupOutputBeforeBuild()
         .enableSourceMaps(!Encore.isProduction())
 
+        // enables Sass/SCSS support
+        .enableSassLoader()
+
         .addEntry('app', './assets/js/app.js')
         .addStyleEntry('global', './assets/css/global.scss')
         .splitEntryChunks()
@@ -33,10 +36,6 @@ Encore
 //        })
 
 
-
-        // enables Sass/SCSS support
-        .enableSassLoader()
-
         .autoProvidejQuery()
 //        .enableVersioning(Encore.isProduction())
         // uncomment if you use API Platform Admin (composer req api-admin)
@@ -44,6 +43,8 @@ Encore
         //.addEntry('admin', './assets/js/admin.js')
         .addPlugin(new CopyWebpackPlugin([
             {from: './assets/images', to: 'images'}]))
+        
+        .addLoader({test: /datatables\.net.*/, loader: 'imports?define=>false'})
         ;
 
 //module: {

@@ -9,13 +9,22 @@
 
 //require('../css/global.scss');
 import '../css/global.scss'
-require('../css/app.css');
+import '../css/app.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-var $ = require('jquery');
-require('popper.js');
+import $ from 'jquery';
+//import 'jquery-ui' // if you need only sortable widget.
 import 'bootstrap';
-global.moment = require('moment');
+require ('datatables.net');
+var dt = require ('datatables.net-dt');
+//import './datatables.net-dt/css/jquery.dataTables.css'
+//require('datatables.net-reponsive')(window);
+//require('datatables.net-buttons')(window);
+//require('datatables.net-bs4');
+//dt(window, $);
+
+
+import newjavascript from './newjavascript';
 
 //require('bootstrap');
 
@@ -33,7 +42,8 @@ global.moment = require('moment');
 //window.$.fn.DataTable = dt;
 //window.$.fn.DataTable = dt_bs;
 
-console.log('Webpack Encore! Change assets/js/app.js');
+console.log('Webpack Encore!');
+//makeDraggable();
 
 //$(document).ready(function(){
 //    $('.table').dataTable();
