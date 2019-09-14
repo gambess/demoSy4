@@ -1,5 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
-//var CopyWebpackPlugin = require('copy-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 //Encore.addLoader({ test: /datatables\.net.*/, loader: 'imports-loader?define=>false' })
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -16,17 +16,15 @@ Encore
         .enableSourceMaps(!Encore.isProduction())
 
         // enables Sass/SCSS support
-//        .enableSassLoader()
+        .enableSassLoader()
 
         .addEntry('app', './assets/js/app.js')
         .addStyleEntry('global', './assets/css/global.scss')
-//        .splitEntryChunks()
-//        .configureSplitChunks(function (splitChunks) {
-//            splitChunks.minSize = 0;
-//        })
+        .splitEntryChunks()
+
         
-//        .enableSingleRuntimeChunk()
-//        .enableBuildNotifications()
+        .enableSingleRuntimeChunk()
+        .enableBuildNotifications()
 
 
 //        .configureBabel(() => {
@@ -39,7 +37,8 @@ Encore
 //        .autoProvidejQuery()
 //        .enableVersioning(Encore.isProduction())
 
-//        .addPlugin(new CopyWebpackPlugin([{from: './assets/images', to: 'images'}]))
+//        with this line activate the plugin for deploy images
+        .addPlugin(new CopyWebpackPlugin([{from: './assets/images', to: 'images'}]))
         
 //        .addLoader({test: /datatables\.net.*/, loader: 'imports?define=>false'})
         ;
