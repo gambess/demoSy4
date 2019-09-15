@@ -3,6 +3,7 @@
   "build/app.js": "/build/app.js",
   "build/global.css": "/build/global.css",
   "build/runtime.js": "/build/runtime.js",
+  "build/vendors~app.js": "/build/vendors~app.js",
   "build/images/chungara.png": "/build/images/chungara.png",
   "build/images/comuna.png": "/build/images/comuna.png",
   "build/images/coordillera.png": "/build/images/coordillera.png",
@@ -12,5 +13,7 @@
   "build/images/logo-imputre.png": "/build/images/logo-imputre.png",
   "build/images/new_footer.png": "/build/images/new_footer.png",
   "build/images/provincia.png": "/build/images/provincia.png",
-  "build/images/region.png": "/build/images/region.png"
+  "build/images/region.png": "/build/images/region.png",
+  "build/app~global.css": "/build/app~global.css",
+  "build/app~global.js": "/build/app~global.js"
 }

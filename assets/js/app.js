@@ -5,10 +5,13 @@
  * (and its CSS file) in your base layout (base.html.twig).
  */
 
-//import '../css/global.scss'
+import '../css/global.scss'
 import '../css/app.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
+import $ from 'jquery';
+import 'popper.js';
+import 'bootstrap';
 
 import newjavascript from './newjavascript';
 
