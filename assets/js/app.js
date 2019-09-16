@@ -9,9 +9,14 @@ import '../css/global.scss'
 import '../css/app.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-import $ from 'jquery';
+window.$ = window.jQuery = require( 'jquery' );
+
 import 'popper.js';
 import 'bootstrap';
+
+require( 'datatables.net' );
+require( 'datatables.net-bs4' );
+
 
 import newjavascript from './newjavascript';
 
