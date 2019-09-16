@@ -7,34 +7,7 @@
 //  return "My First Javascript with webpack" + '@'.repeat(count);  
 //};
 export default function () {
-//    $(document).ready(function () {
-//        //this will hold reference to the tr we have dragged and its helper
-//        var c = {};
-//
-//        $(".table tr").draggable({
-//            helper: "clone",
-//            start: function (event, ui) {
-//                c.tr = this;
-//                c.helper = ui.helper;
-//            }
-//        });
-//
-//
-//        $(".table tr").droppable({
-//            drop: function (event, ui) {
-//                var inventor = ui.draggable.text();
-//                $(this).find("input").val(inventor);
-//
-//                $(c.tr).remove();
-//                $(c.helper).remove();
-//            }
-//        });
-//
-//    });
-//$( function() {
-//    $( ".table tr" ).sortable();
-////    $( ".table tr" ).disableSelection();
-//  } );
+
 };
 
 

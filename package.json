@@ -17,10 +17,14 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@google/maps": "^1.0.0",
+        "@types/google__maps": "^0.5.7",
         "bootstrap": "^4.3.1",
         "datatables.net": "^1.10.18",
         "datatables.net-bs4": "^1.10.18",
         "jquery": "^3.4.1",
-        "popper.js": "^1.15.0"
+        "net": "^1.0.2",
+        "popper.js": "^1.15.0",
+        "tls": "0.0.1"
     }
 }

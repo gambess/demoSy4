@@ -17,8 +17,30 @@ import 'bootstrap';
 require( 'datatables.net' );
 require( 'datatables.net-bs4' );
 
+var googleMapsClient = require('@google/maps').createClient({
+  key: 'AIzaSyDr79vgwABfw7I3VqQOjEwcOaWVXtIvT9w',
+  Promise: Promise
+});
 
-import newjavascript from './newjavascript';
+var latLng =  { lat: -18.196241, lng: -69.559689 };
+
+googleMapsClient.placesNearby({
+    location: latLng,
+    radius: 100,
+    type: 'map'
+    })
+    .asPromise()
+  .then((response) => {
+    console.log(response.json.results);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+
+import initMap from './newjavascript';
+
 
 console.log('Webpack Encore!');
 
