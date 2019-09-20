@@ -7,6 +7,10 @@
 //  return "My First Javascript with webpack" + '@'.repeat(count);  
 //};
 export default function () {
+        
+    $( document ).ready(function() {
+        $('.table').DataTable();
+    });
 
 };
 

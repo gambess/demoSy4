@@ -1,24 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comuna index{% endblock %}
+{% block title %}Listado de Comunas{% endblock %}
 
 {% block body %}
-    <h1>Comuna index</h1>
+    <h1>Listado de Comunas</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Codigo</th>
-                <th>Nombre</th>
-                <th>actions</th>
+                <th>Comuna</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
         {% for comuna in comunas %}
             <tr>
-                <td>{{ comuna.id }}</td>
-                <td>{{ comuna.codigo }}</td>
                 <td>{{ comuna.nombre }}</td>
                 <td>
                     <a href="{{ path('comuna_show', {'id': comuna.id}) }}">show</a>

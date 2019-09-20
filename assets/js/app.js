@@ -21,9 +21,9 @@ import newjavascript from './newjavascript';
 //newjavascript()
 
 
-console.log('Webpack Encore!');
+//console.log('Webpack Encore!');
 
 //execute new javascript code
-//newjavascript();
+newjavascript();
 
 

@@ -1,30 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Provincia{% endblock %}
+{% block title %}{{ provincium.nombre | upper }}{% endblock %}
 
 {% block body %}
-    <h1>Provincia</h1>
+    <h1>{{ provincium.nombre | upper }}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ provincium.id }}</td>
+                <th>Ubicación</th>
+                <td>provincium.region.nombre</td>
             </tr>
             <tr>
-                <th>Codigo</th>
-                <td>{{ provincium.codigo }}</td>
+                <th>Coordenadas</th>
+                <td>{{ provincium.latitud }} , {{ provincium.longitud }}</td>
             </tr>
             <tr>
-                <th>Nombre</th>
-                <td>{{ provincium.nombre }}</td>
+                <th>Altura</th>
+                <td>{{ provincium.altura }} msnm</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ provincium.descripcion }}</td>
             </tr>
         </tbody>
     </table>
+            
+    <div id="map"></div> 
 
-    <a href="{{ path('provincia_index') }}">back to list</a>
+    <a href="{{ path('provincia_index') }}">Volver al listado de Provincias</a>
 
-    <a href="{{ path('provincia_edit', {'id': provincium.id}) }}">edit</a>
+    <a href="{{ path('provincia_edit', {'id': provincium.id}) }}">Editar Provincia de {{ provincium.nombre }}</a>
+    
+    <a href="{{ path('provincia_index') }}">Ver las Comunas de {{ provincium.nombre }}</a>
+
+    <a href="{{ path('provincia_edit', {'id': provincium.id}) }}">Ver mapa de las comunas de {{ provincium.nombre }}</a>
 
     {{ include('provincia/_delete_form.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: {{ provincium.latitud }} , lng: {{ provincium.longitud }} },
+{#                {lat: -18.198939, lng: -69.266571},#}
+{#      {lat: -18.475650, lng: -70.310162}       #}
+                zoom: 15 
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr79vgwABfw7I3VqQOjEwcOaWVXtIvT9w&callback=initMap"
+    async defer></script>
 {% endblock %}

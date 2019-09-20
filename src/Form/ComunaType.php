@@ -19,18 +19,13 @@ class ComunaType extends AbstractType
             ->add('codigo')
             ->add('nombre')
             ->add('provincia', EntityType::class, [
-            // looks for choices from this entity
-            'class' => Provincia::class,
-//            'query_builder' => function (EntityRepository $er) {
-//                return $er->createQueryBuilder('pr')
-//                    ->orderBy('pr.nombre', 'ASC');
-//            },
-            // uses the Provincia.nombre property as the visible option string
-            'choice_label' => 'nombre',
-            // used to render a select box, check boxes or radios
-            // 'multiple' => true,
-            // 'expanded' => true,
-        ])
+                'class' => Provincia::class,
+                'choice_label' => 'nombre',
+            ])
+            ->add('latitud')
+            ->add('longitud')
+            ->add('altura')
+            ->add('descripcion')
         ;
     }
 

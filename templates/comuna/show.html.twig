@@ -1,26 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comuna{% endblock %}
+{% block title %}{{ comuna.nombre | upper}}{% endblock %}
 
 {% block body %}
-    <h1>Comuna</h1>
+    <h1>{{ comuna.nombre | upper}}</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ comuna.id }}</td>
+                            <tr>
+                <th>Ubicación</th>
+                <td>comuna.region.nombre</td>
             </tr>
             <tr>
-                <th>Codigo</th>
-                <td>{{ comuna.codigo }}</td>
+                <th>Coordenadas</th>
+                <td>{{ comuna.latitud }} , {{ comuna.longitud }}</td>
             </tr>
             <tr>
-                <th>Nombre</th>
-                <td>{{ comuna.nombre }}</td>
+                <th>Altura</th>
+                <td>{{ comuna.altura }} msnm</td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td>{{ comuna.descripcion }}</td>
             </tr>
         </tbody>
     </table>
+            
+    <div id="map"></div> 
 
     <a href="{{ path('comuna_index') }}">back to list</a>
 
