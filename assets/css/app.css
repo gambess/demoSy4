@@ -13,3 +13,15 @@ body {
     border: 2px solid #FFC107;
     margin-top: 20px;
 }
+
+#map {
+    width: 100%;
+    height: 100vh;
+    border: 1px solid Aqua;
+}
+
+#map-iframe {
+    width: 100%;
+    height: 100vh;
+    border: 1px solid Aqua;
+}

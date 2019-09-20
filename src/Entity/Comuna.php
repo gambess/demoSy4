@@ -45,6 +45,26 @@ class Comuna
      */
     private $provincia;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $altura;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,6 +102,54 @@ class Comuna
     public function setProvincia(?Provincia $provincia): self
     {
         $this->provincia = $provincia;
+
+        return $this;
+    }
+
+    public function getLatitud(): ?string
+    {
+        return $this->latitud;
+    }
+
+    public function setLatitud(?string $latitud): self
+    {
+        $this->latitud = $latitud;
+
+        return $this;
+    }
+
+    public function getLongitud(): ?string
+    {
+        return $this->longitud;
+    }
+
+    public function setLongitud(?string $longitud): self
+    {
+        $this->longitud = $longitud;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getAltura(): ?string
+    {
+        return $this->altura;
+    }
+
+    public function setAltura(?string $altura): self
+    {
+        $this->altura = $altura;
 
         return $this;
     }

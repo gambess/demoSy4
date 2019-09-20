@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head lang="es">
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <title>{% block title %}Bienvenido al Observatorio Comunal (Beta){% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('build/images/favicon.png') }}" />
     </head>
-    <body
-
+    <body>
         {% block header %}
             <header class=" border-bottom">
                 <div class="collapse bg-warning" id="navbarHeader">
@@ -58,7 +57,6 @@
                 </section>
             </div>
         
-
         {% block footer %}
             <footer class="text-center new-footer border-top">
                 <div class="row pt-4 my-md-5 pt-md-5 ">
@@ -80,6 +78,5 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-
     </body>
 </html>

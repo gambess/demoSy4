@@ -59,6 +59,16 @@ class Subsector
      */
     private $sector;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $longitud;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class Subsector
     public function setSector(?Sector $sector): self
     {
         $this->sector = $sector;
+
+        return $this;
+    }
+
+    public function getLatitud(): ?string
+    {
+        return $this->latitud;
+    }
+
+    public function setLatitud(?string $latitud): self
+    {
+        $this->latitud = $latitud;
+
+        return $this;
+    }
+
+    public function getLongitud(): ?string
+    {
+        return $this->longitud;
+    }
+
+    public function setLongitud(?string $longitud): self
+    {
+        $this->longitud = $longitud;
 
         return $this;
     }

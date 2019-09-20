@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Listado de Sectores{% endblock %}
-
 {% block body %}
 
     <center><h1>Listado de Sectores</h1></center>
@@ -22,7 +21,7 @@
                         <td><a href="{{ path('subsector_show', {'id': subsector.id}) }}" title="Ver Ficha del Sector: {{ subsector.nombre }}">{{ subsector.nombre }}</a></td>
                         <td>{{ subsector.altura }}</td>
                         <td>
-                            
+
                             <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
                             <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Resumen</a>
                             <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Prioridades</a>
@@ -36,7 +35,25 @@
             </tbody>
         </table> 
     </div>
-
-
     <a href="{{ path('subsector_new') }}">Añadir Sector</a>
+    <div id="map"></div>    
+    <div id="map-iframe">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13136.23297561968!2d-69.08017667653249!3d-18.70283817215351!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9150cedde518690d%3A0x3aa44192c367640!2sSalar%20de%20Surire!5e1!3m2!1sen!2scl!4v1568818500483!5m2!1sen!2scl" width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+    </div>    
+
+    
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: -18.196241, lng: -69.559689},
+                zoom: 8
+            });
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr79vgwABfw7I3VqQOjEwcOaWVXtIvT9w&callback=initMap"
+    async defer></script>
 {% endblock %}
