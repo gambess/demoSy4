@@ -9,6 +9,7 @@
         <thead class="tab-title">
             <tr>
                 <th>Provincia</th>
+                <th>Región</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
             {% for provincium in provincias %}
                 <tr>
                     <td>{{ provincium.nombre }}</td>
+                    <td>{{ provincium.region.nombre }}</td>
                     <td>
                         <a href="{{ path('provincia_show', {'id': provincium.id}) }}">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>Ver ficha

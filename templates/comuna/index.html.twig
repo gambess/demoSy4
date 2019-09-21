@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Comuna</th>
+                <th>Provincia</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
         {% for comuna in comunas %}
             <tr>
                 <td>{{ comuna.nombre }}</td>
+                <td>{{ comuna.provincia.nombre }}</td>
                 <td>
                     <a href="{{ path('comuna_show', {'id': comuna.id}) }}">show</a>
                     <a href="{{ path('comuna_edit', {'id': comuna.id}) }}">edit</a>
