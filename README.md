@@ -1,2 +1,2 @@
 # demoSy4
-Una demo para backoffice de información georeferenciada sobre Symfony 4
+Demo de un backoffice con información geográfica implementado sobre Symfony 4
