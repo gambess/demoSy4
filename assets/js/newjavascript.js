@@ -9,7 +9,7 @@
 export default function () {
         
     $( document ).ready(function() {
-        $('.table').DataTable();
+        $('.list-table').DataTable();
     });
 
 };

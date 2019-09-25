@@ -17,6 +17,9 @@ import 'bootstrap';
 require( 'datatables.net' );
 require( 'datatables.net-bs4' );
 
+require('glyphicons-only-bootstrap/css/bootstrap-theme.min.css');
+require('glyphicons-only-bootstrap/css/bootstrap.min.css');
+
 import newjavascript from './newjavascript';
 //newjavascript()
 
