@@ -35,12 +35,10 @@ Encore
 
 
 //        .autoProvidejQuery()
-//        .enableVersioning(Encore.isProduction())
 
 //        with this line activate the plugin for deploy images
         .addPlugin(new CopyWebpackPlugin([{from: './assets/images', to: 'images'}]))
         
-//        .addLoader({test: /datatables\.net.*/, loader: 'imports?define=>false'})
         ;
 
 module.exports = Encore.getWebpackConfig();

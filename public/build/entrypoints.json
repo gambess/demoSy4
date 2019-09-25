@@ -8,6 +8,7 @@
         "/build/app.js"
       ],
       "css": [
+        "/build/vendors~app.css",
         "/build/app~global.css",
         "/build/app.css"
       ]

@@ -9,7 +9,13 @@
 export default function () {
         
     $( document ).ready(function() {
-        $('.list-table').DataTable();
+        $('.list-table').DataTable(
+                {
+                    "language" : {
+                        "url" : "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json"
+                    }
+                }        
+        );
     });
 
 };
