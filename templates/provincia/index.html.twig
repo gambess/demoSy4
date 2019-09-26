@@ -23,7 +23,8 @@
             {% for provincium in provincias %}
                 <tr scope="row">
                     <td>
-                        <a href="{{ path('provincia_show', {'id': provincium.id}) }}" title="Ver Ficha Provincia {{ provincium.nombre }}">
+                        <a href="{{ path('provincia_show', {'id': provincium.id}) }}" 
+                           title="Ver Ficha Provincia {{ provincium.nombre }}">
                             {{ provincium.nombre }}
                         </a>
                         <a href="{{ path('provincia_edit', {'id': provincium.id}) }}" 
@@ -32,7 +33,8 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('region_show', {'id': provincium.region.id}) }}"  title="Ver Ficha Región {{ provincium.region.nombre }}">
+                        <a href="{{ path('region_show', {'id': provincium.region.id}) }}" 
+                           title="Ver Ficha Región {{ provincium.region.nombre }}">
                             {{ provincium.region.nombre }}
                         </a>
                         <a href="{{ path('region_edit', {'id': provincium.region.id}) }}" 
@@ -41,13 +43,13 @@
                         </a>
                     </td>
                     <td>
-{#                        <a href="{{ path('provincia_edit', {'id': provincium.id}) }}" title="Editar {{ provincium.nombre }}">
-                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </a>#}
-                        <a href="{{ path('comuna_index') }}" title="Ir a Gestionar Comunas">
+                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('localidad_index') }}" title="Ir a Gestionar Localidades">
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>
