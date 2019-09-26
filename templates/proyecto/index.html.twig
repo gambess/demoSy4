@@ -1,55 +1,67 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listado de Proyectos{% endblock %}
+{% set label_title = "GESTIÓN PROYECTOS" %}
+
+{% block title %}{{ label_title }}{% endblock %}
 
 {% block body %}
-    <center><h2>Listado de Proyectos</h2></center>
-    <br/>
-    <br/>
-
-    <div class="container-small">
-        <table class="table table-hover list-table">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Nombre</th>
-                    <th>CodigoBip</th>
-                    <th>TipologiaAccion</th>
-                    <th>Justificacion</th>
-                    <th>Descripcion</th>
-                    <th>Programa</th>
-                    <th>BeneficiariosDirectos</th>
-                    <th>BeneficiariosIndirectos</th>
-                    <th>EstimadoViviendas</th>
-                    <th>Fecha</th>
-                    <th>actions</th>
+    <h1>{{ label_title }}</h1>
+    <br />
+    <a href="{{ path('proyecto_new') }}" title="Añadir Nuevo Proyecto">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+    </a>
+    <br />
+    <table class="table table-bordered table-striped list-table">
+        <thead class="thead-dark">
+            <tr scope="row">
+                <th scope="col">Nombre</th>
+                <th scope="col">Código Bip</th>
+                <th scope="col">Tipología Acción</th>
+                <th scope="col">Justificación</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proyecto in proyectos %}
+                <tr scope="row">
+                    <td>
+                        <a href="{{ path('localidad_show', {'id': proyecto.id}) }}" 
+                           title="Ver Ficha Localidad {{ proyecto.nombre }}">
+                            {{ proyecto.nombre }}
+                        </a>
+                        <a href="{{ path('localidad_edit', {'id': proyecto.id}) }}" 
+                           title="Editar Localidad {{ proyecto.nombre }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>{{ proyecto.codigoBip }}</td>
+                    <td>{{ proyecto.tipologiaAccion }}</td>
+                    <td>{{ proyecto.justificacion }}</td>
+                    <td>{{ proyecto.descripcion }}</td>
+                    <td>{{ proyecto.fecha ? proyecto.fecha|date('d-m-Y') : '' }}</td>
+                    <td>
+                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for proyecto in proyectos %}
-                    <tr>
-                        <td>{{ proyecto.nombre }}</td>
-                        <td>{{ proyecto.codigoBip }}</td>
-                        <td>{{ proyecto.tipologiaAccion }}</td>
-                        <td>{{ proyecto.justificacion }}</td>
-                        <td>{{ proyecto.descripcion }}</td>
-                        <td>{{ proyecto.programa }}</td>
-                        <td>{{ proyecto.beneficiariosDirectos }}</td>
-                        <td>{{ proyecto.beneficiariosIndirectos }}</td>
-                        <td>{{ proyecto.estimadoViviendas }}</td>
-                        <td>{{ proyecto.fecha ? proyecto.fecha|date('Y-m-d') : '' }}</td>
-                        <td>
-                            <a href="{{ path('proyecto_show', {'id': proyecto.id}) }}">show</a>
-                            <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}">edit</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="13">no records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    <a href="{{ path('proyecto_new') }}">Crear nuevo proyecto</a>
+            {% else %}
+                <tr>
+                    <td colspan="13">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
