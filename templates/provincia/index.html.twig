@@ -1,38 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Gestión de Provincias" %}
+{% set label_title = "GESTIÓN PROVINCIAS" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
 {% block body %}
     <h1>{{ label_title }}</h1>
-
-    <a class="btn btn-primary" role="button" href="{{ path('provincia_new') }}">Añadir Provincia</a>
-
-    <table class="table list-table">
-        <thead class="tab-title">
+    <br />
+    <a href="{{ path('provincia_new') }}" title="Añadir Nueva Provincia">
+        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+    </a>
+    <br />
+    <table class="table table-bordered table-striped list-table">
+        <thead class="thead-dark">
             <tr>
-                <th>Provincia</th>
-                <th>Región</th>
-                <th>Acciones</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Región</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for provincium in provincias %}
-                <tr>
-                    <td><a href="{{ path('provincia_show', {'id': provincium.id}) }}" title="Ver Ficha {{ provincium.nombre }}">
-                            {{ provincium.nombre }} <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        </a></td>
-                    <td><a href="{{ path('region_show', {'id': provincium.region.id}) }}"  title="Editar {{ provincium.region.nombre }}">
-                            {{ provincium.region.nombre }} <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                        </a></td>
-                    <td><a href="{{ path('provincia_edit', {'id': provincium.id}) }}" title="Editar {{ provincium.nombre }}">
+                <tr scope="row">
+                    <td>
+                        <a href="{{ path('provincia_show', {'id': provincium.id}) }}" title="Ver Ficha Provincia {{ provincium.nombre }}">
+                            {{ provincium.nombre }}
+                        </a>
+                        <a href="{{ path('provincia_edit', {'id': provincium.id}) }}" 
+                              title="Editar Provincia {{ provincium.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </a><a href="{{ path('comuna_index') }}" title="Gestionar Comunas">
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ path('region_show', {'id': provincium.region.id}) }}"  title="Ver Ficha Región {{ provincium.region.nombre }}">
+                            {{ provincium.region.nombre }}
+                        </a>
+                        <a href="{{ path('region_edit', {'id': provincium.region.id}) }}" 
+                              title="Editar Región {{ provincium.region.nombre }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>
+{#                        <a href="{{ path('provincia_edit', {'id': provincium.id}) }}" title="Editar {{ provincium.nombre }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>#}
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestionar Comunas">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                        </a><a href="{{ path('localidad_index') }}" title="Gestionar Localidades">
+                        </a>
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestionar Localidades">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                        </a></td>
+                        </a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
