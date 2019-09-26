@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Comuna{% endblock %}
+{% block title %}Editar Comuna{% endblock %}
 
 {% block body %}
-    <h1>Edit Comuna</h1>
-
-    {{ include('comuna/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('comuna_index') }}">back to list</a>
-
-    {{ include('comuna/_delete_form.html.twig') }}
+    <h1><a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>Editar Comuna</h1>
+        {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+        {{ include('comuna/_delete_form.html.twig') }}
+        {{ include('comuna/_form.html.twig')  }}
 {% endblock %}
