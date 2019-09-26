@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}FICHA DE LA PROVINCIA DE {{ provincium.nombre | upper }}{% endblock %}
+{% set title_label = "Ficha de la Provincia de " ~ provincium.nombre  %}
+
+{% block title %}{{ title_label | upper }}{% endblock %}
 
 {% block body %}
-    <h1>FICHA DE LA PROVINCIA DE {{ provincium.nombre | upper }}</h1>
+    <h1>{{ title_label | upper }}</h1>
 <br />
     <table class="table">
         <tbody>

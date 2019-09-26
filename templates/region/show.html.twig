@@ -1,30 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Region{% endblock %}
+{% set title_label = "Ficha de la Región de " ~ region.nombre  %}
+
+{% block title %}{{ title_label | upper }}{% endblock %}
 
 {% block body %}
-    <h1>Region</h1>
-
-    <table class="table">
+    <h1>{{ title_label | upper }}</h1>
+<br />
+<table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ region.id }}</td>
+                <th class="alert alert-info" role="alert">Ubicación</th>
+                <td>Chile</td>
             </tr>
             <tr>
-                <th>Codigo</th>
-                <td>{{ region.codigo }}</td>
+                <th class="alert alert-info" role="alert">Coordenadas</th>
+                <td>{{ region.latitud }} , {{ region.longitud }}</td>
             </tr>
             <tr>
-                <th>Nombre</th>
-                <td>{{ region.nombre }}</td>
+                <th class="alert alert-info" role="alert" >Altura</th>
+                <td>{{ region.altura }} msnm</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Descripción</th>
+                <td>{{ region.descripcion }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Acciones</th>
+                <td>
+                    <a href="{{ path('region_edit', {'id': region.id}) }}" title="Ir a Editar Región de {{ region.nombre }}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('region_index') }}"  title="Ir a Gestión Regiones">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    {{ include('region/_delete_form.html.twig') }}
+                </td>
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('region_index') }}">back to list</a>
-
-    <a href="{{ path('region_edit', {'id': region.id}) }}">edit</a>
-
-    {{ include('region/_delete_form.html.twig') }}
 {% endblock %}

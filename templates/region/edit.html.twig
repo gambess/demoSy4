@@ -1,15 +1,10 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit Region{% endblock %}
+{% block title %}Editar Región{% endblock %}
 
 {% block body %}
-    <h1>Edit Region</h1>
-    
-    {% form_theme form 'bootstrap_4_layout.html.twig' %}
-
-    {{ include('region/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('region_index') }}">back to list</a>
-
-    {{ include('region/_delete_form.html.twig') }}
+    <h1><a href="{{ path('provincia_index') }}" title="Ir a Gestión Regiones">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>Editar Región</h1>
+        {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+        {{ include('region/_delete_form.html.twig') }}
+        {{ include('region/_form.html.twig')  }}
 {% endblock %}
