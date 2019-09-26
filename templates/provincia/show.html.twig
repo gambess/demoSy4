@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set title_label = "Ficha de la Provincia de " ~ provincium.nombre  %}
+{% set title_label = "Ficha de " ~ provincium.nombre  %}
 
 {% block title %}{{ title_label | upper }}{% endblock %}
 
@@ -18,7 +18,7 @@
                 <td>{{ provincium.latitud }} , {{ provincium.longitud }}</td>
             </tr>
             <tr>
-                <th class="alert alert-info" role="alert" >Altura</th>
+                <th class="alert alert-info" role="alert">Altura</th>
                 <td>{{ provincium.altura }} msnm</td>
             </tr>
             <tr>
