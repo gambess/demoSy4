@@ -16,20 +16,14 @@ class SubsectorType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
+            ->add('latitud')
+            ->add('longitud')
             ->add('altura')
-            ->add('descripcion')
             ->add('sector', EntityType::class, [
             'class' => Sector::class,
-//            'query_builder' => function (EntityRepository $er) {
-//                return $er->createQueryBuilder('pr')
-//                    ->orderBy('pr.nombre', 'ASC');
-//            },
-            // uses the Provincia.nombre property as the visible option string
             'choice_label' => 'nombre',
-            // used to render a select box, check boxes or radios
-            // 'multiple' => true,
-            // 'expanded' => true,
             ])
+            ->add('descripcion')
         ;
     }
 

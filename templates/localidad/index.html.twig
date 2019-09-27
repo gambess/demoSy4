@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "GESTIÓN LOCALIDADES" %}
+{% set label_title = "Gestión Localidades" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
 {% block body %}
-    <h1>{{ label_title }}</h1>
+    <h1>{{ label_title | upper }}</h1>
     <br />
     <a href="{{ path('localidad_new') }}" title="Añadir Nueva Provincia">
-        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </a>
     <br />
     <table class="table table-bordered table-striped list-table">
@@ -67,8 +67,11 @@
                         <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('proyecto_index') }}" title="Ir a Gestión Proyectos">
+                        <a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('proyecto_index') }}" title="Ir a Gestión Proyectos">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>

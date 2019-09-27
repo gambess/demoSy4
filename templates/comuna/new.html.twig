@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}New Comuna{% endblock %}
-
+{% set title_label = "Añadir Comuna" %}
+{% block title %}{{ title_label }}{% endblock %}
 {% block body %}
-    <h1>Create new Comuna</h1>
-
+    <h1><a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{ title_label | upper }}</h1>
     {{ include('comuna/_form.html.twig') }}
-
-    <a href="{{ path('comuna_index') }}">back to list</a>
 {% endblock %}

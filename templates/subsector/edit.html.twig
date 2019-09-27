@@ -1,13 +1,11 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Edit Subsector{% endblock %}
+{% set title_label = "Editar Sector" %}
+{% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Subsector</h1>
-
-    {{ include('subsector/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('subsector_index') }}">back to list</a>
-
-    {{ include('subsector/_delete_form.html.twig') }}
+    <h1><a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{  title_label | upper }}</h1>
+        {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+        {{ include('subsector/_delete_form.html.twig') }}
+        {{ include('subsector/_form.html.twig')  }}
 {% endblock %}

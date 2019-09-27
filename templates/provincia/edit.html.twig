@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Editar Provincia{% endblock %}
+{% set title_label = "Editar Provincia" %}
+{% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
     <h1><a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
-            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>Editar Provincia</h1>
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{  title_label | upper }}</h1>
         {% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
         {{ include('provincia/_delete_form.html.twig') }}
         {{ include('provincia/_form.html.twig')  }}

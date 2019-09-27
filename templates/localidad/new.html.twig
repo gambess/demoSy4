@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}New Localidad{% endblock %}
-
+{% set title_label = "Añadir Localidad" %}
+{% block title %}{{ title_label }}{% endblock %}
 {% block body %}
-    <h1>Create new Localidad</h1>
-
+    <h1><a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{ title_label | upper }}</h1>
     {{ include('localidad/_form.html.twig') }}
-
-    <a href="{{ path('localidad_index') }}">back to list</a>
 {% endblock %}

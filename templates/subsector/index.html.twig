@@ -1,39 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listado de Sectores{% endblock %}
+{% set label_title = "Gestión Sectores" %}
+
+{% block title %}{{ label_title }}{% endblock %}
+
 {% block body %}
-
-    <center><h1>Listado de Sectores</h1></center>
-    <br/>
-    <br/>
-    <div class="container">
-        <table class="table table-hover list-table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Altura</th>
-                    <th scope="col">Acciones</th>
+    <h1>{{ label_title | upper }}</h1>
+    <br />
+    <a href="{{ path('subsector_new') }}" title="Añadir Nuevo Sector">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+    <br />
+    <table class="table table-bordered table-striped list-table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Coordenadas</th>
+                <th scope="col">Altura</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subsector in subsectors %}
+                <tr scope="row">
+                    <td>
+                        <a href="{{ path('subsector_show', {'id': subsector.id}) }}" 
+                           title="Ver Ficha Sector {{ subsector.nombre }}">
+                            {{ subsector.nombre }}
+                        </a>
+                        <a href="{{ path('subsector_edit', {'id': subsector.id}) }}" 
+                           title="Editar Sector {{ subsector.nombre }}">
+                            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>{{ subsector.latitud }}, {{ subsector.longitud }}</td>
+                    <td>{{ subsector.altura }}</td>
+                    <td>
+                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for subsector in subsectors %}
-                    <tr>
-                        <td><a href="{{ path('subsector_show', {'id': subsector.id}) }}" title="Ver Ficha del Sector: {{ subsector.nombre }}">{{ subsector.nombre }}</a></td>
-                        <td>{{ subsector.altura }}</td>
-                        <td>
-
-                            <a href="{{ path('subsector_edit', {'id': subsector.id}) }}">Editar</a>
-                            <a href="{{ path('summary_subsector', {'id': subsector.id}) }}">Ver Resumen</a>
-                            <a href="{{ path('summary_subsector_by_priority', {'id': subsector.id}) }}">Ver Prioridades</a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="4">no records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table> 
-    </div>
-    <a href="{{ path('subsector_new') }}">Añadir Sector</a>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table> 
 {% endblock %}
