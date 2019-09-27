@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}New Proyecto{% endblock %}
-
+{% set title_label = "Añadir Proyecto" %}
+{% block title %}{{ title_label }}{% endblock %}
 {% block body %}
-    <h1>Create new Proyecto</h1>
-
+    <h1><a href="{{ path('proyecto_index') }}" title="Ir a Gestión Proyecto">
+            <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{ title_label | upper }}</h1>
     {{ include('proyecto/_form.html.twig') }}
-
-    <a href="{{ path('proyecto_index') }}">back to list</a>
 {% endblock %}

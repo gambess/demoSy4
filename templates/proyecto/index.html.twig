@@ -16,7 +16,7 @@
             <tr scope="row">
                 <th scope="col">Nombre</th>
                 <th scope="col">Localidad</th>
-                <th scope="col">Código Bip</th>
+                <th scope="col">Código B.I.P.</th>
                 <th scope="col">Tipología Acción</th>
                 <th scope="col">Justificación</th>
                 <th scope="col">Descripción</th>
@@ -28,24 +28,24 @@
             {% for proyecto in proyectos %}
                 <tr scope="row">
                     <td>
-                        <a href="{{ path('localidad_show', {'id': proyecto.id}) }}" 
+                        <a href="{{ path('proyecto_show', {'id': proyecto.id}) }}" 
                            title="Ver Ficha Localidad {{ proyecto.nombre }}">
                             {{ proyecto.nombre }}
                         </a>
-                        <a href="{{ path('localidad_edit', {'id': proyecto.id}) }}" 
+                        <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}" 
                            title="Editar Localidad {{ proyecto.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td>
-                        {#<a href="{{ path('localidad_show', {'id': proyecto.localidad.id}) }}" 
+                        <a href="{{ path('localidad_show', {'id': proyecto.localidad.id}) }}" 
                            title="Ver Ficha Localidad {{ proyecto.localidad.nombre }}">
                             {{ proyecto.localidad.nombre }}
                         </a>
                         <a href="{{ path('localidad_edit', {'id': proyecto.localidad.id}) }}" 
                            title="Editar Localidad {{ proyecto.localidad.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                        </a>#}
+                        </a>
                     </td>
                     <td>{{ proyecto.codigoBip }}</td>
                     <td>{{ proyecto.tipologiaAccion }}</td>
