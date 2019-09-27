@@ -11,6 +11,12 @@ DirectoryIndex index.php
 # when compiling LESS/Sass/CoffeScript assets.
 # Options FollowSymlinks
 
+# Use PHP71 as default
+AddHandler application/x-httpd-php71 .php
+<IfModule mod_suphp.c>
+    suPHP_ConfigPath /opt/php71/lib
+</IfModule>
+
 # Disabling MultiViews prevents unwanted negotiation, e.g. "/index" should not resolve
 # to the front controller "/index.php" but be rewritten to "/index.php/index".
 <IfModule mod_negotiation.c>
@@ -66,3 +72,7 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+AuthType Basic
+AuthName "demo_obs_comunal"
+AuthUserFile "/home3/gambess/.htpasswds/public_html/obs_comunal/public/passwd"
+require valid-user
