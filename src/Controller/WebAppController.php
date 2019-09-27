@@ -27,5 +27,14 @@ class WebAppController extends AbstractController
         
         return $this->render('webapp/manager.html.twig');
     }
+    
+    /**
+     * @Route("/consulta", name="web_app_consulta", methods={"GET"})
+     */
+    public function consulta(): Response
+    {
+        
+        return $this->render('webapp/consulta.html.twig');
+    }
 
 }

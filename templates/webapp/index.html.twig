@@ -1,25 +1,23 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <section class="jumbotron text-center">
-        <div class="card-deck">
-            <div class="col d-flex justify-content-center col-sm-6">
-                <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                    <div class="card-header border-warning">Acceder a:</div>
-                    <div class="card-body">
-                        <a href="/subsector" class="btn btn-warning">Consulta Datos</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex justify-content-center col-sm-6">
-                <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                    <div class="card-header border-warning">Acceder a:</div>
-                    <div class="card-body">
-                        <a href="/manager" class="btn btn-warning">Gestión Datos</a>
-                    </div>
+    <div class="card-deck">
+        <div class="col d-flex justify-content-center col-sm-6">
+            <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-body">
+                    <a href="/consulta" class="btn btn-warning">Consulta Datos</a>
                 </div>
             </div>
         </div>
-    </section>    
+        <div class="col d-flex justify-content-center col-sm-6">
+            <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-body">
+                    <a href="/manager" class="btn btn-warning">Gestión Datos</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

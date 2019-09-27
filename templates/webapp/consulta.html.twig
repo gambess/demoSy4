@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="card-deck">
+        <div class="col d-flex justify-content-center col-sm-4">
+            <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-body">
+                    <a href="{{ path('summary_subsector') }}" class="btn btn-warning">Consulta Sectores</a>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-center col-sm-4">
+            <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-body">
+                    <a href="{{ path('localidad_index') }}" class="btn btn-warning">Consulta Localidades</a>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-center col-sm-4">
+            <div class="card text-center border-warning mb-3" style="width: 18rem;">
+                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-body">
+                    <a href="{{ path('proyecto_index') }}" class="btn btn-warning">Consulta Proyectos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
