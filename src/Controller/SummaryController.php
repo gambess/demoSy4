@@ -13,24 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class SummaryController extends AbstractController
 {
-    /**
-     * @Route("/subsector", name="summary_subsector", methods={"GET"})
-     */
-    public function index(): Response
-    {
-        $subsectors = $this->getDoctrine()
-            ->getRepository(Subsector::class)
-            ->findAll();
-
-        return $this->render('summary/subsector.html.twig', [
-            'subsectors' => $subsectors,
-        ]);
-    }
     
     /**
      * @Route("/subsector/{id}", name="summary_by_subsector", methods={"GET"})
      */
-    public function show(Subsector $subsector): Response
+    public function subsector(Subsector $subsector): Response
     {
         $localidads = $this->getDoctrine()
             ->getRepository(Localidad::class)
@@ -47,7 +34,7 @@ class SummaryController extends AbstractController
     /**
      * @Route("/subsector/{id}/priority", name="summary_by_subsector_priority", methods={"GET"})
      */
-    public function edit(Subsector $subsector): Response
+    public function priority(Subsector $subsector): Response
     {
 //            return $this->redirectToRoute('subsector_index');
         $localidads = $this->getDoctrine()

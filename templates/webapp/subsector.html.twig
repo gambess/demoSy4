@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Ver Resumen de los Sectores" %}
+{% set label_title = "Consulta Sectores" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
@@ -18,7 +18,7 @@
             {% for subsector in subsectors %}
                 <tr scope="row">
                     <td>
-                        <a href="{{ path('subsector_show', {'id': subsector.id}) }}" 
+                        <a href="{{ path('ficha_subsector', {'id': subsector.id}) }}" 
                            title="Ver Ficha Sector {{ subsector.nombre }}">
                             {{ subsector.nombre }}
                         </a>

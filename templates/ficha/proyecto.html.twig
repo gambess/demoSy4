@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% set title_label = "Ficha Proyecto " ~ proyecto.nombre  %}
+
+{% block title %}{{ title_label }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title_label | upper }}</h1>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="alert alert-info" role="alert">Localidad</th>
+                <td>{{ proyecto.localidad.nombre }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Código B.I.P.</th>
+                <td>{{ proyecto.codigoBip }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Tipología de Acción Solicitada</th>
+                <td>{{ proyecto.tipologiaAccion }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Justificacion</th>
+                <td>{{ proyecto.justificacion }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Descripcion de la acción solicitada</th>
+                <td>{{ proyecto.descripcion }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Programa</th>
+                <td>{{ proyecto.programa }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Estimación Beneficiarios Directos</th>
+                <td>{{ proyecto.beneficiariosDirectos }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Estimación Beneficiarios Indirectos</th>
+                <td>{{ proyecto.beneficiariosIndirectos }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Estimación Viviendas Incorporadas</th>
+                <td>{{ proyecto.estimadoViviendas }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Fecha</th>
+                <td>{{ proyecto.fecha ? proyecto.fecha|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Acciones</th>
+                <td>
+                    <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}" title="Ir a Editar Proyecto {{ proyecto.nombre }}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('region_index') }}"  title="Ir a Gestión Regiones">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('proyecto_index') }}" title="Ir a Gestión Proyectos">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    {{ include('proyecto/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

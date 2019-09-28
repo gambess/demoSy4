@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% set title_label = "Ficha de " ~ comuna.nombre  %}
+
+{% block title %}{{ title_label }}{% endblock %}
+
+{% block body %}
+    <h1>{{ title_label | upper }}</h1>
+    <br />
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="alert alert-info" role="alert">Ubicación</th>
+                <td>En la Provincia de {{ comuna.provincia.nombre }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Coordenadas</th>
+                <td>{{ comuna.latitud }} , {{ comuna.longitud }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Altura</th>
+                <td>{{ comuna.altura }} msnm</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Descripción</th>
+                <td>{{ comuna.descripcion }}</td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">Acciones</th>
+                <td>
+                    <a href="{{ path('comuna_edit', {'id': comuna.id}) }}" title="Ir a Editar Comuna de {{ comuna.nombre }}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('region_index') }}"  title="Ir a Gestión Regiones">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('comuna_index') }}"  title="Ir a Gestión Comunas">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+                    {{ include('comuna/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
