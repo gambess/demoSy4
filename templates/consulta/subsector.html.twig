@@ -26,14 +26,12 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('consulta_localidad') }}" title="Ir a Consultar Localidades">
-{#                        <a href="{{ path('consulta_localidades', {'id': subsector.id}) }}" title="Ver Resumen">#}
+                        <a href="{{ path('consulta_localidad_by_subsector', {'id': subsector.id}) }}" title="Ir a Consulta Localidades del Sector {{ subsector.nombre }}" >
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('consulta_proyecto') }}" title="Ir a Consultar Proyectos">
-{#                        <a href="{{ path('consulta_localidades', {'id': subsector.id}) }}" title="Ver Resumen">#}
+                        <a href="{{ path('consulta_proyecto_by_subsector', {'id': subsector.id}) }}" title="Ir a Consulta Proyectos del Sector {{ subsector.nombre }}" >
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>

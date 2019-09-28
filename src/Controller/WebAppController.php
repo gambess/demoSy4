@@ -70,6 +70,66 @@ class WebAppController extends AbstractController
     }
     
     /**
+     * @Route("/consulta/localidad/subsector/{id}", name="consulta_localidad_by_subsector", methods={"GET"})
+     */
+    public function localidadBySubsector(Subsector $subsector): Response
+    {
+        $localidads = $this->getDoctrine()
+            ->getRepository(Localidad::class)
+            ->findBy(['subsector' => $subsector]);
+
+        return $this->render('consulta/localidad.html.twig', [
+            'localidads' => $localidads,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/localidad/comuna/{id}", name="consulta_localidad_by_comuna", methods={"GET"})
+     */
+    public function localidadByComuna(Comuna $comuna): Response
+    {
+        $localidads = $this->getDoctrine()
+            ->getRepository(Localidad::class)
+            ->findBy(['comuna' => $comuna]);
+
+        return $this->render('consulta/localidad.html.twig', [
+            'localidads' => $localidads,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/proyecto/localidad/{id}", name="consulta_proyecto_by_localidad", methods={"GET"})
+     */
+    public function proyectoByLocalidad(Localidad $localidad): Response
+    {
+        $proyectos = $this->getDoctrine()
+            ->getRepository(Proyecto::class)
+            ->findBy(['localidad' => $localidad]);
+
+        return $this->render('consulta/proyecto.html.twig', [
+            'proyectos' => $proyectos,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/proyecto/subsector/{id}", name="consulta_proyecto_by_subsector", methods={"GET"})
+     */
+    public function proyectoBySubsector(Subsector $subsector): Response
+    {
+        $localidads = $this->getDoctrine()
+            ->getRepository(Localidad::class)
+            ->findBy(['subsector' => $subsector]);
+        
+        $proyectos = $this->getDoctrine()
+            ->getRepository(Proyecto::class)
+            ->findBy(['localidad' => $localidads]);
+
+        return $this->render('consulta/proyecto.html.twig', [
+            'proyectos' => $proyectos,
+        ]);
+    }
+    
+    /**
      * @Route("/consulta/comuna", name="consulta_comuna", methods={"GET"})
      */
     public function comuna(): Response
@@ -100,7 +160,7 @@ class WebAppController extends AbstractController
     /**
      * @Route("/consulta/ficha/proyecto/{id}", name="ficha_proyecto", methods={"GET"})
      */
-    public function ficha_proyecto(Proyecto $proyecto): Response
+    public function fichaProyecto(Proyecto $proyecto): Response
     {
         return $this->render('ficha/proyecto.html.twig', [
             'proyecto' => $proyecto,
@@ -110,7 +170,7 @@ class WebAppController extends AbstractController
     /**
      * @Route("/consulta/ficha/comuna/{id}", name="ficha_comuna", methods={"GET"})
      */
-    public function ficha_comuna(Comuna $comuna): Response
+    public function fichaComuna(Comuna $comuna): Response
     {
         return $this->render('ficha/comuna.html.twig', [
             'comuna' => $comuna,
@@ -120,7 +180,7 @@ class WebAppController extends AbstractController
     /**
      * @Route("/consulta/ficha/subsector/{id}", name="ficha_subsector", methods={"GET"})
      */
-    public function ficha_subsector(Subsector $subsector): Response
+    public function fichaSubsector(Subsector $subsector): Response
     {
         return $this->render('ficha/subsector.html.twig', [
             'subsector' => $subsector,
@@ -130,7 +190,7 @@ class WebAppController extends AbstractController
     /**
      * @Route("/consulta/ficha/localidad/{id}", name="ficha_localidad", methods={"GET"})
      */
-    public function ficha_localidad(Localidad $localidad): Response
+    public function fichaLocalidad(Localidad $localidad): Response
     {
         return $this->render('ficha/localidad.html.twig', [
             'localidad' => $localidad

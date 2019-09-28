@@ -20,7 +20,7 @@
                 <tr scope="row">
                     <td>
                         <a href="{{ path('ficha_comuna', {'id': comuna.id}) }}" 
-                           title="Ver Ficha Comuna {{ comuna.nombre }}">
+                           title="Ir a Ficha Comuna {{ comuna.nombre }}">
                             {{ comuna.nombre }}
                         </a>
                     </td>
@@ -29,7 +29,7 @@
                         <a href="{{ path('consulta_subsector') }}"  title="Ir a Consulta Sectores">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('consulta_localidad') }}" title="Ir a Consulta Localidades">
+                        <a href="{{ path('consulta_localidad_by_comuna', {'id': comuna.id}) }}" title="Ir a Consulta Localidades de la comuna {{ comuna.nombre }}">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
                         <a href="{{ path('consulta_proyecto') }}" title="Ir a Consulta Proyectos">

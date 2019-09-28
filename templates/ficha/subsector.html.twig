@@ -1,38 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% set title_label = "Ficha de " ~ subsector.nombre  %}
+{% set title_label = "Ficha del Sector"  %}
 
 {% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
     <h1>{{ title_label | upper }}</h1>
     <br />
+    <h2>{{ subsector.nombre | upper }}</h2>
+    <br />
     <table class="table">
         <tbody>
             <tr>
-                <th class="alert alert-info" role="alert">Coordenadas</th>
+                <th class="alert alert-info" role="alert">COORDENADAS</th>
                 <td>{{ subsector.latitud }} , {{ subsector.longitud }}</td>
             </tr>
             <tr>
-                <th class="alert alert-info" role="alert">Altura</th>
+                <th class="alert alert-info" role="alert">ALTURA</th>
                 <td>{{ subsector.altura }}</td>
             </tr>
             <tr>
-                <th class="alert alert-info" role="alert">Descripción</th>
+                <th class="alert alert-info" role="alert">DESCRIPCIÓN</th>
                 <td>{{ subsector.descripcion }}</td>
             </tr>
             <tr>
-                <th class="alert alert-info" role="alert">Acciones</th>
+                <th class="alert alert-info" role="alert">RESUMEN</th>
                 <td>
-                    <a href="{{ path('consulta_subsector') }}" title="Ir a Consulta Sectores">
+                    <a href="{{ path('summary_by_subsector', {'id': subsector.id}) }}" title="Ir a Resumen">
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('summary_by_subsector_priority', {'id': subsector.id}) }}" title="Ir a Resumen por Prioridad">
                         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                     </a>
+                </td>
+            </tr>
+            <tr>
+                <th class="alert alert-info" role="alert">ACCIONES</th>
+                <td>
                     <a href="{{ path('consulta_comuna') }}" title="Ir a Consulta Comunas">
                         <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                     </a>
-                    <a href="{{ path('consulta_localidad') }}" title="Ir a Consulta Localidades">
+                    <a href="{{ path('consulta_subsector') }}" title="Ir a Consulta Sectores">
                         <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                     </a>
+                    <a href="{{ path('consulta_localidad_by_subsector', {'id': subsector.id}) }}" title="Ir a Consulta Localidades del Sector {{ subsector.nombre }}" >
+                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                    </a>
+                    <a href="{{ path('consulta_proyecto_by_subsector', {'id': subsector.id}) }}" title="Ir a Consulta Proyectos del Sector {{ subsector.nombre }}" >
+                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                    </a>
+
                 </td>
             </tr>
         </tbody>
