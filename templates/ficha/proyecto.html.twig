@@ -1,76 +1,114 @@
 {% extends 'base.html.twig' %}
 
-{% set title_label = "Ficha del Proyecto " ~ proyecto.nombre  %}
+{% set title_label = proyecto.programa  %}
+{% set subtitle_label = "Ficha Identificación de Proyectos" %}
 
 {% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <h1>{{ title_label | upper }}</h1>
+    <h4><u> MINISTERIO DEL INTERIOR Y SEGURIDAD PÚBLICA </u></h4>
+    <h4>SUBSECRETARÍA DE DESARROLLO REGIONAL Y ADMINISTRATIVO</h4>
     <br />
-    <table class="table">
-        <tbody>
-            <tr>
-                <th class="alert alert-info" role="alert">Localidad</th>
-                <td>
-                    <a href="{{ path('ficha_localidad', {'id': proyecto.localidad.id}) }}" 
-                       title="Ir a Ficha Localidad {{ proyecto.localidad.nombre }}">
-                        {{ proyecto.localidad.nombre }}
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Código B.I.P.</th>
-                <td>{{ proyecto.codigoBip }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Tipología de Acción Solicitada</th>
-                <td>{{ proyecto.tipologiaAccion }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Justificacion</th>
-                <td>{{ proyecto.justificacion }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Descripcion de la acción solicitada</th>
-                <td>{{ proyecto.descripcion }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Programa</th>
-                <td>{{ proyecto.programa }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Estimación Beneficiarios Directos</th>
-                <td>{{ proyecto.beneficiariosDirectos }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Estimación Beneficiarios Indirectos</th>
-                <td>{{ proyecto.beneficiariosIndirectos }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Estimación Viviendas Incorporadas</th>
-                <td>{{ proyecto.estimadoViviendas }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Fecha</th>
-                <td>{{ proyecto.fecha ? proyecto.fecha|date('Y-m-d') : '' }}</td>
-            </tr>
-            <tr>
-                <th class="alert alert-info" role="alert">Acciones</th>
-                <td>
-                    <a href="{{ path('consulta_comuna') }}" title="Ir a Consulta Comunas">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                    </a>
-                    <a href="{{ path('consulta_subsector') }}" title="Ir a Consulta Sectores">
-                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                    </a>
-                    <a href="{{ path('consulta_localidad') }}" title="Ir a Consulta Localidades">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-                    </a>
-                    <a href="{{ path('consulta_proyecto') }}" title="Ir a Consulta Proyectos">
-                        <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <h2>{{ title_label | upper }}</h2>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-12">{{ subtitle_label | upper }}</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">1.- </div>
+        <div class="col-5">ANTESCEDENTES GENERALES</div>
+        <div class="col-3 ficha-border">FECHA: {{ proyecto.fecha ? proyecto.fecha|date('m-d-Y') : '' }}</div>
+        <div class="col-2"></div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-2">REGIÓN: </div>
+        <div class="col-2">{{ proyecto.localidad.comuna.provincia.region.nombre }}</div>
+        <div class="col-2">PROVINCIA: </div>
+        <div class="col-2">{{ proyecto.localidad.comuna.provincia.nombre }}</div>
+        <div class="col-2">COMUNA:</div>
+        <div class="col-2">{{ proyecto.localidad.comuna.nombre  }}</div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-12">NOMBRE DEL PROYECTO:</div>
+        <div class="col-12">{{ proyecto.nombre }}</div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-4">CÓDIGO B.I.P. (Si tiene):</div>
+        <div class="col-8">{{ proyecto.codigoBip }}</div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-4">TIPOLOGÍA DE LA ACCIÓN SOLICITADA:</div>
+        <div class="col-4">{{ proyecto.tipologiaAccion }}</div>
+        <div class="col-4"></div>
+        <div class="col-12">(Estudio, Diseño, Inspección Técnica, Adquisición de Terreno, Asistencia Legal, Asistencia Técnica, Obra, Saneamiento de Títulos)</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-7">Nº estimativo de potenciales beneficiarios:</div>
+        <div class="col-2">Directos: </div>
+        <div class="col-2">{{ proyecto.beneficiariosDirectos }} Habitantes</div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-2">Indirectos:</div>
+        <div class="col-2">{{ proyecto.beneficiariosIndirectos }} Habitantes</div>
+        <div class="col-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-6">Nº estimativo de viviendas incorporadas al proyecto:</div>
+        <div class="col-2">{{ proyecto.estimadoViviendas }} Viviendas </div>
+        <div class="col-4"></div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">2.- </div>
+        <div class="col-4">JUSTIFICACIÓN:</div>
+        <div class="col-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">Caracterización socioeconomica de los potenciales beneficiarios directos, su situación sanitaria y capacidad municipal.</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">{{ proyecto.justificacion }}</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2">3.- </div>
+        <div class="col-6">DESCRIPCIÓN DE LA ACCIÓN SOLICITADA:</div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-12">(Referencias a carencias de saneamiento básico de la localidad, en los casos de estudios o diseños.)</div>
+        <div class="col-12">(Referencias a las características del proyecto y funciones a desarrollar, para inspección o asistencia técnica.)</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12">{{ proyecto.descripcion }}</div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <a href="{{ path('consulta_comuna') }}" title="Ir a Consulta Comunas">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            </a>
+            <a href="{{ path('consulta_subsector') }}" title="Ir a Consulta Sectores">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </a>
+            <a href="{{ path('consulta_localidad') }}" title="Ir a Consulta Localidades">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            </a>
+            <a href="{{ path('consulta_proyecto') }}" title="Ir a Consulta Proyectos">
+                <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="col-4"></div>
+    </div>
 {% endblock %}
