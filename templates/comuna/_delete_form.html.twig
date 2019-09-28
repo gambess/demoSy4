@@ -1,7 +1,7 @@
-<form class="delete-form" method="post" action="{{ path('comuna_delete', {'id': comuna.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR la Comuna de {{ comuna.nombre }}, esta acción no se puede revertir.');">
+<form class="delete-form" method="post" action="{{ path('comuna_delete', {'id': comuna.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR la Comuna {{ comuna.nombre }}, esta acción no puede revertirse.');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comuna.id) }}">
-    <a href="#" onclick="$('.delete-form').submit();" title="Borrar Comuna de {{ comuna.nombre }}">
+    <a href="#" onclick="$('.delete-form').submit();" title="Borrar Comuna {{ comuna.nombre }}">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
     </a>
 </form>

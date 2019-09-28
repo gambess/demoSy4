@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
-{% set title_label = "Añadir Región" %}
+{% set title_label = "Añadir Nueva Región" %}
 {% block title %}{{ title_label }}{% endblock %}
 {% block body %}
-    <h1><a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+    <h1><a href="{{ path('region_index') }}" title="Ir a Gestiona Regiones">
             <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{ title_label | upper }}</h1>
     {{ include('region/_form.html.twig') }}
 {% endblock %}

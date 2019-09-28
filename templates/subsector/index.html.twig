@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Gestión Sectores" %}
+{% set label_title = "Gestiona Sectores" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
@@ -25,34 +25,34 @@
                 <tr scope="row">
                     <td>
                         <a href="{{ path('subsector_show', {'id': subsector.id}) }}" 
-                           title="Ver Ficha Sector {{ subsector.nombre }}">
+                           title="Ir a Ficha Sector {{ subsector.nombre }}">
                             {{ subsector.nombre }}
                         </a>
                         <a href="{{ path('subsector_edit', {'id': subsector.id}) }}" 
-                           title="Editar Sector {{ subsector.nombre }}">
+                           title="Ir a Editar Sector {{ subsector.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td>{{ subsector.latitud }}, {{ subsector.longitud }}</td>
                     <td>{{ subsector.altura }}</td>
                     <td>
-                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                        <a href="{{ path('region_index') }}" title="Ir a Gestiona Regiones">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                        <a href="{{ path('provincia_index') }}" title="Ir a Gestiona Provincias">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestiona Comunas">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestiona Localidades">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">No se encontraron registros</td>
                 </tr>
             {% endfor %}
         </tbody>

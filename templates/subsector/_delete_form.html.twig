@@ -1,7 +1,7 @@
-<form class="delete-form" method="post" action="{{ path('subsector_delete', {'id': subsector.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR el Sector de {{ subsector.nombre }}, esta acción no se puede revertir.');">
+<form class="delete-form" method="post" action="{{ path('subsector_delete', {'id': subsector.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR el Sector {{ subsector.nombre }}, esta acción no puede revertirse.');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ subsector.id) }}">
-    <a href="#" onclick="$('.delete-form').submit();" title="Borrar Provincia de {{ subsector.nombre }}">
+    <a href="#" onclick="$('.delete-form').submit();" title="Borrar Sector {{ subsector.nombre }}">
         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
     </a>
 </form>

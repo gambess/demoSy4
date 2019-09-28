@@ -1,53 +1,57 @@
 {% extends 'base.html.twig' %}
-{% block body %}     
+{% set label_title = "Gestiona Información" %}
+{% block title %}{{ label_title }}{% endblock %}
+{% block body %}
+    <h1>{{ label_title | upper }}</h1>
+    <br />    
     <div class="container">
         <div class="card-columns ">
 
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/region.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/region" class="btn btn-warning">Gestión Regiones</a>
+                    <a href="/region" class="btn btn-warning">Regiones</a>
                 </div>
             </div>
             
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/guallatire.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/subsector" class="btn btn-warning">Gestión Sectores</a>
+                    <a href="/subsector" class="btn btn-warning">Sectores</a>
                 </div>
             </div>
             
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/provincia.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/provincia" class="btn btn-warning">Gestión Provincias</a>
+                    <a href="/provincia" class="btn btn-warning">Provincias</a>
                 </div>
             </div>
                 
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/chungara.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/localidad" class="btn btn-warning">Gestión Localidades</a>
+                    <a href="/localidad" class="btn btn-warning">Localidades</a>
                 </div>
             </div>
 
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/comuna.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/comuna" class="btn btn-warning">Gestión Comunas</a>
+                    <a href="/comuna" class="btn btn-warning">Comunas</a>
                 </div>
             </div>
 
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <img src="{{ asset('build/images/coordillera.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
-                    <a href="/proyecto" class="btn btn-warning">Gestión Proyectos</a>
+                    <a href="/proyecto" class="btn btn-warning">Proyectos</a>
                 </div>
             </div>                      
             
@@ -55,16 +59,16 @@
                 <img src="{{ asset('build/images/vivienda.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
                     <h5 class="card-title">Viviendas</h5>
-                    <p class="card-text">Acceder a la gestión de las todas las Viviendas de las Localidad.</p>
-                    <a href="/casa" class="btn btn-warning">Gestión Viviendas</a>
+                    <p class="card-text">Accede a la gestión de las todas las Viviendas de las Localidad.</p>
+                    <a href="/casa" class="btn btn-warning">Viviendas</a>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
                 <img src="{{ asset('build/images/propietario.png') }}" class="card-img-top" alt="Arica y Parinacota">
                 <div class="card-body">
                     <h5 class="card-title">Propietarios</h5>
-                    <p class="card-text">Acceder a la gestión de las todos los Subsectores del país.</p>
-                    <a href="/propietario" class="btn btn-warning">Gestión Propietarios</a>
+                    <p class="card-text">Accede a la gestión de las todos los Subsectores del país.</p>
+                    <a href="/propietario" class="btn btn-warning">Propietarios</a>
                 </div>
             </div>#}                      
         </div>    

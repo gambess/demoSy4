@@ -23,32 +23,32 @@
                 <tr scope="row">
                     <td>
                         <a href="{{ path('ficha_localidad', {'id': localidad.id}) }}" 
-                           title="Ver Ficha Localidad {{ localidad.nombre }}">
+                           title="Ir a Ficha Localidad {{ localidad.nombre }}">
                             {{ localidad.nombre }}
                         </a>
                     </td>
                     <td>{{ localidad.altura }}</td>
                     <td>
                         <a href="{{ path('ficha_comuna', {'id': localidad.comuna.id}) }}" 
-                           title="Ver Ficha Comuna {{ localidad.comuna.nombre }}">
+                           title="Ir a Ficha Comuna {{ localidad.comuna.nombre }}">
                             {{ localidad.comuna.nombre }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ path('ficha_subsector', {'id': localidad.subsector.id}) }}" 
-                           title="Ver Ficha Sector {{ localidad.subsector.nombre }}">
+                           title="Ir a Ficha Sector {{ localidad.subsector.nombre }}">
                             {{ localidad.subsector.nombre }}
                         </a>
                     </td>
                     <td>{{ localidad.personas }}</td>
                     <td>
-                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                        <a href="{{ path('consulta_comuna') }}" title="Ir a Consulta Comunas">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
+                        <a href="{{ path('consulta_subsector') }}" title="Ir a Consulta Sectores">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('proyecto_index') }}" title="Ir a Gestión Proyectos">
+                        <a href="{{ path('consulta_proyecto') }}" title="Ir a Consulta Proyectos">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>

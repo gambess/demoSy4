@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Subsector;
 use App\Entity\Localidad;
 use App\Entity\Comuna;
+use App\Entity\Proyecto;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -82,6 +83,30 @@ class WebAppController extends AbstractController
         ]);
     }
     
+    /**
+     * @Route("/consulta/proyecto", name="consulta_proyecto", methods={"GET"})
+     */
+    public function proyecto(): Response
+    {
+        $proyectos = $this->getDoctrine()
+            ->getRepository(Proyecto::class)
+            ->findAll();
+
+        return $this->render('consulta/proyecto.html.twig', [
+            'proyectos' => $proyectos,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/ficha/proyecto/{id}", name="ficha_proyecto", methods={"GET"})
+     */
+    public function ficha_proyecto(Proyecto $proyecto): Response
+    {
+        return $this->render('proyecto/show.html.twig', [
+            'proyecto' => $proyecto,
+        ]);
+    }
+
     /**
      * @Route("/consulta/ficha/comuna/{id}", name="ficha_comuna", methods={"GET"})
      */

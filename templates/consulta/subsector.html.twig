@@ -12,6 +12,7 @@
             <tr>
                 <th scope="col">Nombre</th>
                 <th scope="col">Localidad</th>
+                <th scope="col">Proyecto</th>
                 <th scope="col">Resumen</th>
             </tr>
         </thead>
@@ -20,28 +21,34 @@
                 <tr scope="row">
                     <td>
                         <a href="{{ path('ficha_subsector', {'id': subsector.id}) }}" 
-                           title="Ver Ficha Sector {{ subsector.nombre }}">
+                           title="Ir a Ficha Sector {{ subsector.nombre }}">
                             {{ subsector.nombre }}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('consulta_localidad') }}" title="Consultar Localidades">
+                        <a href="{{ path('consulta_localidad') }}" title="Ir a Consultar Localidades">
 {#                        <a href="{{ path('consulta_localidades', {'id': subsector.id}) }}" title="Ver Resumen">#}
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('summary_by_subsector', {'id': subsector.id}) }}" title="Ver Resumen">
+                        <a href="{{ path('consulta_proyecto') }}" title="Ir a Consultar Proyectos">
+{#                        <a href="{{ path('consulta_localidades', {'id': subsector.id}) }}" title="Ver Resumen">#}
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('summary_by_subsector_priority', {'id': subsector.id}) }}" title="Ver Resumen por Prioridad">
+                    </td>
+                    <td>
+                        <a href="{{ path('summary_by_subsector', {'id': subsector.id}) }}" title="Ir a Resumen">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('summary_by_subsector_priority', {'id': subsector.id}) }}" title="Ir a Resumen por Prioridad">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">No se encontraron registros</td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
-{% set title_label = "Añadir Sector" %}
+{% set title_label = "Añadir Nuevo Sector" %}
 {% block title %}{{ title_label }}{% endblock %}
 {% block body %}
-    <h1><a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
+    <h1><a href="{{ path('subsector_index') }}" title="Ir a Gestiona Sectores">
             <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span></a>{{ title_label | upper }}</h1>
     {{ include('subsector/_form.html.twig') }}
 {% endblock %}

@@ -1,9 +1,13 @@
 {% extends 'base.html.twig' %}
+{% set label_title = "Bienvenido a la Aplicación Web" %}
+{% block title %}{{ label_title }}{% endblock %}
 {% block body %}
+    <h1>{{ label_title | upper }}</h1>
+    <br />
     <div class="card-deck">
         <div class="col d-flex justify-content-center col-sm-6">
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <div class="card-body">
                     <a href="/consulta" class="btn btn-warning">Consulta Información</a>
                 </div>
@@ -11,9 +15,9 @@
         </div>
         <div class="col d-flex justify-content-center col-sm-6">
             <div class="card text-center border-warning mb-3" style="width: 18rem;">
-                <div class="card-header border-warning">Acceder a:</div>
+                <div class="card-header border-warning">Accede a:</div>
                 <div class="card-body">
-                    <a href="/manager" class="btn btn-warning">Gestión Información</a>
+                    <a href="/manager" class="btn btn-warning">Gestiona Información</a>
                 </div>
             </div>
         </div>

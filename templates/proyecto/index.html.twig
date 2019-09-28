@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Gestión Proyectos" %}
+{% set label_title = "Gestiona Proyectos" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
@@ -29,21 +29,21 @@
                 <tr scope="row">
                     <td>
                         <a href="{{ path('proyecto_show', {'id': proyecto.id}) }}" 
-                           title="Ver Ficha Localidad {{ proyecto.nombre }}">
+                           title="Ir a Ficha Proyecto {{ proyecto.nombre }}">
                             {{ proyecto.nombre }}
                         </a>
                         <a href="{{ path('proyecto_edit', {'id': proyecto.id}) }}" 
-                           title="Editar Localidad {{ proyecto.nombre }}">
+                           title="Ir a Editar Localidad {{ proyecto.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
                     <td>
                         <a href="{{ path('localidad_show', {'id': proyecto.localidad.id}) }}" 
-                           title="Ver Ficha Localidad {{ proyecto.localidad.nombre }}">
+                           title="Ir a Ficha Localidad {{ proyecto.localidad.nombre }}">
                             {{ proyecto.localidad.nombre }}
                         </a>
                         <a href="{{ path('localidad_edit', {'id': proyecto.localidad.id}) }}" 
-                           title="Editar Localidad {{ proyecto.localidad.nombre }}">
+                           title="Ir a Editar Localidad {{ proyecto.localidad.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -53,26 +53,26 @@
                     <td>{{ proyecto.descripcion }}</td>
                     <td>{{ proyecto.fecha ? proyecto.fecha|date('d-m-Y') : '' }}</td>
                     <td>
-                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                        <a href="{{ path('region_index') }}" title="Ir a Gestiona Regiones">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                        <a href="{{ path('provincia_index') }}" title="Ir a Gestiona Provincias">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('comuna_index') }}" title="Ir a Gestión Comunas">
+                        <a href="{{ path('comuna_index') }}" title="Ir a Gestiona Comunas">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
+                        <a href="{{ path('subsector_index') }}" title="Ir a Gestiona Sectores">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestiona Localidades">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="13">no records found</td>
+                    <td colspan="13">No se encontraron registros</td>
                 </tr>
             {% endfor %}
         </tbody>

@@ -1,4 +1,4 @@
-<form class="delete-form" method="post" action="{{ path('proyecto_delete', {'id': proyecto.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR el Proyecto {{ proyecto.nombre }}, esta acción no se puede revertir.');">
+<form class="delete-form" method="post" action="{{ path('proyecto_delete', {'id': proyecto.id}) }}" onsubmit="return confirm('¿Estás seguro?, vas a BORRAR el Proyecto {{ proyecto.nombre }}, esta acción no puede revertirse.');">
     <input type="hidden" name="_method" value="DELETE">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ proyecto.id) }}">
     <a href="#" onclick="$('.delete-form').submit();" title="Borrar Proyecto {{ proyecto.nombre }}">
