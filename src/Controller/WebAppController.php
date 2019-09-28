@@ -102,7 +102,7 @@ class WebAppController extends AbstractController
      */
     public function ficha_proyecto(Proyecto $proyecto): Response
     {
-        return $this->render('proyecto/show.html.twig', [
+        return $this->render('ficha/proyecto.html.twig', [
             'proyecto' => $proyecto,
         ]);
     }
