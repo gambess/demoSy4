@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Resumen por Prioridad Sector: {{ subsector.nombre }} {% endblock %}
+{% set title_label = "Resumen por prioridad Sector" %}
+
+{% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <center><h1>Resumen por Prioridad</h1></center>
+    <h1>{{ title_label | upper }}</h1>
+    <br />
+    <h2> {{ subsector.nombre |upper }}</h2>
     <br/>
-    <center><h2>Sector: {{ subsector.nombre |upper }}</h2></center>
-    <br/>
-
-    <div class="container">
-        <table class="table table-hover">
-            <thead class="thead-dark">
-            <tr>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr scope="row">
                 <th>LOCALIDADES</th>
                 <th>PRIORIDAD</th>
                 <th>PORCENTAJES</th>
@@ -19,45 +19,45 @@
             </tr>
         </thead>
         <tbody>
-        {# Definicion de variables #}
-        {%  set total_registros = localidads|length %} 
-        
-        {% set label_prioridad_alta = 'Alta' %}
-        {% set count_localidades_alta = 0 %}
-        {% set count_personas_alta = 0 %}
-        
-        {% set label_prioridad_media = 'Media' %}
-        {% set count_personas_media = 0 %}
-        {% set count_localidades_media = 0 %}
-        
-        {% set label_prioridad_baja = 'Baja' %}
-        {% set count_personas_baja = 0 %}
-        {% set count_localidades_baja = 0 %}
-       
-        {% set label_prioridad_nula = 'Nula' %}
-        {% set count_localidades_nula = 0 %}
-        {% set count_personas_nula = 0 %}
-            
-        {% for localidad in localidads %}
-            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'A'%}
-                {% set count_localidades_alta = count_localidades_alta + 1 %}
-                {% set count_personas_alta = count_personas_alta + localidad.personas %}
-            {% endif %}
-            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'M'%}
-                {% set count_localidades_media = count_localidades_media + 1 %}
-                {% set count_personas_media = count_personas_media + localidad.personas %}
-            {% endif %}
-            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'B'%}
-                {% set count_localidades_baja = count_localidades_baja + 1 %}
-                {% set count_personas_baja = count_personas_baja + localidad.personas %}
-            {% endif %}
-            {%if  localidad.prioridad is defined and localidad.prioridad starts with 'N'%}
-                {% set count_localidades_nula = count_localidades_nula + 1 %}
-                {% set count_personas_nula = count_personas_nula + localidad.personas %}
-            {% endif %}
-        {% endfor %}
+            {# Definicion de variables #}
+            {%  set total_registros = localidads|length %} 
+
+            {% set label_prioridad_alta = 'Alta' %}
+            {% set count_localidades_alta = 0 %}
+            {% set count_personas_alta = 0 %}
+
+            {% set label_prioridad_media = 'Media' %}
+            {% set count_personas_media = 0 %}
+            {% set count_localidades_media = 0 %}
+
+            {% set label_prioridad_baja = 'Baja' %}
+            {% set count_personas_baja = 0 %}
+            {% set count_localidades_baja = 0 %}
+
+            {% set label_prioridad_nula = 'Nula' %}
+            {% set count_localidades_nula = 0 %}
+            {% set count_personas_nula = 0 %}
+
+            {% for localidad in localidads %}
+                {%if  localidad.prioridad is defined and localidad.prioridad starts with 'A'%}
+                    {% set count_localidades_alta = count_localidades_alta + 1 %}
+                    {% set count_personas_alta = count_personas_alta + localidad.personas %}
+                {% endif %}
+                {%if  localidad.prioridad is defined and localidad.prioridad starts with 'M'%}
+                    {% set count_localidades_media = count_localidades_media + 1 %}
+                    {% set count_personas_media = count_personas_media + localidad.personas %}
+                {% endif %}
+                {%if  localidad.prioridad is defined and localidad.prioridad starts with 'B'%}
+                    {% set count_localidades_baja = count_localidades_baja + 1 %}
+                    {% set count_personas_baja = count_personas_baja + localidad.personas %}
+                {% endif %}
+                {%if  localidad.prioridad is defined and localidad.prioridad starts with 'N'%}
+                    {% set count_localidades_nula = count_localidades_nula + 1 %}
+                    {% set count_personas_nula = count_personas_nula + localidad.personas %}
+                {% endif %}
+            {% endfor %}
             {%if  count_localidades_alta > 0%}
-                <tr>
+                <tr scope="row">
                     <td>{{ count_localidades_alta }}</td>
                     <td>{{ label_prioridad_alta }}</td>
                     <td>{{ (count_localidades_alta / total_registros * 100)|round}}%</td>
@@ -65,7 +65,7 @@
                 </tr>
             {% endif %}
             {%if  count_localidades_media > 0%}
-                <tr>
+                <tr scope="row">
                     <td>{{ count_localidades_media }}</td>
                     <td>{{ label_prioridad_media }}</td>
                     <td>{{ (count_localidades_media / total_registros * 100)|round}}%</td>
@@ -73,7 +73,7 @@
                 </tr>
             {% endif %}
             {%if  count_localidades_baja > 0%}
-                <tr>
+                <tr scope="row">
                     <td>{{ count_localidades_baja }}</td>
                     <td>{{ label_prioridad_baja }}</td>
                     <td>{{ (count_localidades_baja / total_registros * 100)|round}}%</td>
@@ -81,7 +81,7 @@
                 </tr>
             {% endif %}
             {%if  count_localidades_nula > 0%}
-                <tr>
+                <tr scope="row">
                     <td>{{ count_localidades_nula }}</td>
                     <td>{{ label_prioridad_nula }}</td>
                     <td>{{ (count_localidades_nula / total_registros * 100)|round}}%</td>

@@ -6,11 +6,17 @@
 
 {% block body %}
     <h1>{{ title_label | upper }}</h1>
+    <br />
     <table class="table">
         <tbody>
             <tr>
                 <th class="alert alert-info" role="alert">Localidad</th>
-                <td>{{ proyecto.localidad.nombre }}</td>
+                <td>
+                    <a href="{{ path('ficha_localidad', {'id': proyecto.localidad.id}) }}" 
+                       title="Ir a Ficha Localidad {{ proyecto.localidad.nombre }}">
+                        {{ proyecto.localidad.nombre }}
+                    </a>
+                </td>
             </tr>
             <tr>
                 <th class="alert alert-info" role="alert">Código B.I.P.</th>

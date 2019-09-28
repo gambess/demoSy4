@@ -1,37 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Resumen Sector: {{ subsector.nombre }} {% endblock %}
+{% set title_label = "Resumen Sector" %}
+
+{% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <center><h1>Resumen</h1></center>
+    <h1>{{ title_label | upper }}</h1>
+    <br />
+    <h2> {{ subsector.nombre |upper }}</h2>
     <br/>
-    <center><h2>Sector: {{ subsector.nombre |upper }}</h2></center>
-    <br/>
-
-    <div class="container">
-        <table class="table table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th>LOCALIDAD</th>
-                    <th>PRIORIDAD</th>
-                    <th>PERSONAS</th>
-                    <th>MOTIVO</th>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr scope="row">
+                <th>LOCALIDAD</th>
+                <th>PRIORIDAD</th>
+                <th>PERSONAS</th>
+                <th>MOTIVO</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for localidad in localidads %}
+                <tr scope="row">
+                    <td><a href="{{ path('ficha_localidad', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
+                    <td>{{ localidad.prioridad }}</td>
+                    <td>{{ localidad.personas }}</td>
+                    <td>{{ localidad.motivo }}</td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for localidad in localidads %}
-                    <tr>
-                        <td><a href="{{ path('ficha_localidad', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
-                        <td>{{ localidad.prioridad }}</td>
-                        <td>{{ localidad.personas }}</td>
-                        <td>{{ localidad.motivo }}</td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="12">no records found</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endblock %}
+            {% else %}
+                <tr scope="row">
+                    <td colspan="12">No se encontraron registros</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
