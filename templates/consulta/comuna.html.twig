@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Consulta Sectores" %}
+{% set label_title = "Consulta Comunas" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
@@ -10,24 +10,29 @@
     <table class="table table-bordered table-striped list-table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Ver Resumen</th>
+                <th scope="col">Comuna</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for subsector in subsectors %}
+            {% for comuna in comunas %}
                 <tr scope="row">
                     <td>
-                        <a href="{{ path('ficha_subsector', {'id': subsector.id}) }}" 
-                           title="Ver Ficha Sector {{ subsector.nombre }}">
-                            {{ subsector.nombre }}
+                        <a href="{{ path('ficha_comuna', {'id': comuna.id}) }}" 
+                           title="Ver Ficha Comuna {{ comuna.nombre }}">
+                            {{ comuna.nombre }}
                         </a>
                     </td>
+                    <td>{{ comuna.provincia.nombre }}</td>
                     <td>
-                        <a href="{{ path('summary_by_subsector', {'id': subsector.id}) }}" title="Ver Resumen">
+                        <a href="{{ path('consulta_localidad') }}" title="Ir a Consulta Localidades">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('consulta_subsector') }}"  title="Ir a Consulta Sectores">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
                         </a>
-                        <a href="{{ path('summary_by_subsector_priority', {'id': subsector.id}) }}" title="Ver Resumen por Prioridad">
+                        <a href="{{ path('consulta_comuna') }}" title="Ir a Consulta Proyectos">
                             <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
                         </a>
                     </td>
@@ -38,5 +43,5 @@
                 </tr>
             {% endfor %}
         </tbody>
-    </table> 
+    </table>
 {% endblock %}

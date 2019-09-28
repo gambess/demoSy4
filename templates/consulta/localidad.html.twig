@@ -1,15 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% set label_title = "Gestión Localidades" %}
+{% set label_title = "Consulta Localidades" %}
 
 {% block title %}{{ label_title }}{% endblock %}
 
 {% block body %}
     <h1>{{ label_title | upper }}</h1>
-    <br />
-    <a href="{{ path('localidad_new') }}" title="Añadir Nueva Provincia">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </a>
     <br />
     <table class="table table-bordered table-striped list-table">
         <thead class="thead-dark">
@@ -33,7 +29,7 @@
                     </td>
                     <td>{{ localidad.altura }}</td>
                     <td>
-                        <a href="{{ path('comuna_show', {'id': localidad.comuna.id}) }}" 
+                        <a href="{{ path('ficha_comuna', {'id': localidad.comuna.id}) }}" 
                            title="Ver Ficha Comuna {{ localidad.comuna.nombre }}">
                             {{ localidad.comuna.nombre }}
                         </a>

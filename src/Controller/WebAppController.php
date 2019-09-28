@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Subsector;
 use App\Entity\Localidad;
+use App\Entity\Comuna;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,7 +49,7 @@ class WebAppController extends AbstractController
             ->getRepository(Subsector::class)
             ->findAll();
 
-        return $this->render('webapp/subsector.html.twig', [
+        return $this->render('consulta/subsector.html.twig', [
             'subsectors' => $subsectors,
         ]);
     }
@@ -62,8 +63,32 @@ class WebAppController extends AbstractController
             ->getRepository(Localidad::class)
             ->findAll();
 
-        return $this->render('webapp/localidad.html.twig', [
+        return $this->render('consulta/localidad.html.twig', [
             'localidads' => $localidads,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/comuna", name="consulta_comuna", methods={"GET"})
+     */
+    public function comuna(): Response
+    {
+        $comunas = $this->getDoctrine()
+            ->getRepository(Comuna::class)
+            ->findAll();
+
+        return $this->render('consulta/comuna.html.twig', [
+            'comunas' => $comunas,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/ficha/comuna/{id}", name="ficha_comuna", methods={"GET"})
+     */
+    public function ficha_comuna(Comuna $comuna): Response
+    {
+        return $this->render('ficha/comuna.html.twig', [
+            'comuna' => $comuna,
         ]);
     }
     
