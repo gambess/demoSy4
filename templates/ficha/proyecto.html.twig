@@ -1,97 +1,94 @@
 {% extends 'base.html.twig' %}
 
-{% set title_label = proyecto.programa  %}
+{% set title_label = "Programa de " ~ proyecto.programa  %}
 {% set subtitle_label = "Ficha Identificación de Proyectos" %}
 
 {% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <h4><u> MINISTERIO DEL INTERIOR Y SEGURIDAD PÚBLICA </u></h4>
-    <h4>SUBSECRETARÍA DE DESARROLLO REGIONAL Y ADMINISTRATIVO</h4>
+    <p class="h5"><u> MINISTERIO DEL INTERIOR Y SEGURIDAD PÚBLICA </u></p>
+    <p class="h5">SUBSECRETARÍA DE DESARROLLO REGIONAL Y ADMINISTRATIVO</p>
     <br />
-    <h2>PROGRAMA DE {{ title_label | upper }}</h2>
-    <h3>ACCIONES CONCURRENTES</h3>
+    <p class="h4">{{ title_label | upper }}</p>
+    <p class="h4">ACCIONES CONCURRENTES</p>
     <br />
     <div class="row ficha-border">
-        <div class="col-12">{{ subtitle_label | upper }}</div>
+        <div class="col-12"><p class="h4">{{ subtitle_label | upper }}</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-2">1.- </div>
-        <div class="col-5">ANTESCEDENTES GENERALES</div>
-        <div class="col-2 ficha-border">FECHA: {{ proyecto.fecha ? proyecto.fecha|date('m-d-Y') : '' }}</div>
-        <div class="col-3"></div>
+        <div class="col-2 text-left"><p class="h5">1.- </p></div>
+        <div class="col-5 text-left"><p class="h5">ANTESCEDENTES GENERALES </p></div>
+        <div class="col-3 ficha-border"><p class="h5">FECHA: {{ proyecto.fecha ? proyecto.fecha|date('m-d-Y') : '' }}</p></div>
+        <div class="col-2"></div>
     </div>
     <br />
     <div class="row ficha-border">
-        <div class="col-2">REGIÓN: </div>
-        <div class="col-2">{{ proyecto.localidad.comuna.provincia.region.nombre }}</div>
-        <div class="col-2">PROVINCIA: </div>
-        <div class="col-2">{{ proyecto.localidad.comuna.provincia.nombre }}</div>
-        <div class="col-2">COMUNA:</div>
-        <div class="col-2">{{ proyecto.localidad.comuna.nombre  }}</div>
+        <div class="col-2"><p class="h5">REGIÓN: </p></div>
+        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.provincia.region.nombre }}</p></div>
+        <div class="col-2"><p class="h5">PROVINCIA: </p></div>
+        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.provincia.nombre }}</p></div>
+        <div class="col-2"><p class="h5">COMUNA: </p></div>
+        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.nombre  }}</p></div>
     </div>
     <br />
     <div class="row ficha-border">
-        <div class="col-12">NOMBRE DEL PROYECTO:</div>
-        <div class="col-12">{{ proyecto.nombre }}</div>
+        <div class="col-12 text-left"><p class="h5">NOMBRE DEL PROYECTO: </p></div>
+        <div class="col-12 text-justify"><p class="h4">{{ proyecto.nombre }}</p></div>
     </div>
     <br />
     <div class="row ficha-border">
-        <div class="col-4">CÓDIGO B.I.P. (Si tiene):</div>
-        <div class="col-8">{{ proyecto.codigoBip }}</div>
+        <div class="col-4 text-left"><p class="h5">CÓDIGO B.I.P. (Si tiene): </p></div>
+        <div class="col-8"><p class="h4">{{ proyecto.codigoBip }}</p></div>
     </div>
     <br />
     <div class="row ficha-border">
-        <div class="col-4">TIPOLOGÍA DE LA ACCIÓN SOLICITADA:</div>
-        <div class="col-4">{{ proyecto.tipologiaAccion }}</div>
+        <div class="col-6 text-left"><p class="h5">TIPOLOGÍA DE LA ACCIÓN SOLICITADA: </p></div>
+        <div class="col-3 text-left"><p class="h4">{{ proyecto.tipologiaAccion }}</p></div>
         <div class="col-4"></div>
-        <div class="col-12">(Estudio, Diseño, Inspección Técnica, Adquisición de Terreno, Asistencia Legal, Asistencia Técnica, Obra, Saneamiento de Títulos)</div>
+        <div class="col-12 text-left"><p class="h6">(Estudio, Diseño, Inspección Técnica, Adquisición de Terreno, Asistencia Legal, Asistencia Técnica, Obra, Saneamiento de Títulos)</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-7">Nº estimativo de potenciales beneficiarios:</div>
-        <div class="col-2">Directos: </div>
-        <div class="col-2">{{ proyecto.beneficiariosDirectos }} Habitantes</div>
-        <div class="col-1"></div>
+        <div class="col-7 text-left"><p class="h6">Nº estimativo de potenciales beneficiarios: </p></div>
+        <div class="col-2 text-right"><p class="h6">Directos: </p></div>
+        <div class="col-3 text-left"><p class="h6">{{ proyecto.beneficiariosDirectos }} Habitantes</p></div>
     </div>
     <div class="row">
-        <div class="col-7"></div>
-        <div class="col-2">Indirectos:</div>
-        <div class="col-2">{{ proyecto.beneficiariosIndirectos }} Habitantes</div>
-        <div class="col-1"></div>
-    </div>
-    <div class="row">
-        <div class="col-6">Nº estimativo de viviendas incorporadas al proyecto:</div>
-        <div class="col-2">{{ proyecto.estimadoViviendas }} Viviendas </div>
-        <div class="col-4"></div>
+        <div class="col-9 text-right"><p class="h6">Indirectos: </p></div>
+        <div class="col-3 text-left"><p class="h6">{{ proyecto.beneficiariosIndirectos }} Habitantes</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-2">2.- </div>
-        <div class="col-4">JUSTIFICACIÓN:</div>
-        <div class="col-6"></div>
-    </div>
-    <div class="row">
-        <div class="col-12">Caracterización socioeconomica de los potenciales beneficiarios directos, su situación sanitaria y capacidad municipal.</div>
+        <div class="col-6 text-left"><p class="h6">Nº estimativo de viviendas incorporadas al proyecto: </p></div>
+        <div class="col-6 text-left"><p class="h6">{{ proyecto.estimadoViviendas }} Viviendas</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-12">{{ proyecto.justificacion }}</div>
+        <div class="col-2 text-left"><p class="h5">2.- </p></div>
+        <div class="col-5 text-left"><p class="h5">JUSTIFICACIÓN </p></div>
+        <div class="col-5"></div>
+    </div>
+    <div class="row">
+        <div class="col-12"><p class="h6">Caracterización socioeconomica de los potenciales beneficiarios directos, su situación sanitaria y capacidad municipal.</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-2">3.- </div>
-        <div class="col-6">DESCRIPCIÓN DE LA ACCIÓN SOLICITADA:</div>
+        <div class="col-12 text-justify"><p class="h5">{{ proyecto.justificacion }}</p></div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-2 text-left"><p class="h5">3.- </p></div>
+        <div class="col-6 text-left"><p class="h5">DESCRIPCIÓN DE LA ACCIÓN SOLICITADA </p></div>
         <div class="col-4"></div>
     </div>
     <div class="row">
-        <div class="col-12">(Referencias a carencias de saneamiento básico de la localidad, en los casos de estudios o diseños.)</div>
-        <div class="col-12">(Referencias a las características del proyecto y funciones a desarrollar, para inspección o asistencia técnica.)</div>
+        <div class="col-12"><p class="h6">(Referencias a carencias de saneamiento básico de la localidad, en los casos de estudios o diseños.)</p></div>
+        <div class="col-12"><p class="h6">(Referencias a las características del proyecto y funciones a desarrollar, para inspección o asistencia técnica.)</p></div>
     </div>
     <br />
     <div class="row">
-        <div class="col-12">{{ proyecto.descripcion }}</div>
+        <div class="col-12 text-justify"><p class="h5">{{ proyecto.descripcion }}</p></div>
     </div>
     <br />
     <div class="row">
