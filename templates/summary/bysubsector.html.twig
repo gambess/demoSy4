@@ -21,7 +21,7 @@
             <tbody>
                 {% for localidad in localidads %}
                     <tr>
-                        <td><a href="{{ path('localidad_show', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
+                        <td><a href="{{ path('ficha_localidad', {'id': localidad.id}) }}">{{ localidad.nombre }}</a></td>
                         <td>{{ localidad.prioridad }}</td>
                         <td>{{ localidad.personas }}</td>
                         <td>{{ localidad.motivo }}</td>

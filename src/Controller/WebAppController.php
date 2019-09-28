@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Subsector;
+use App\Entity\Localidad;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,12 +54,36 @@ class WebAppController extends AbstractController
     }
     
     /**
+     * @Route("/consulta/localidad", name="consulta_localidad", methods={"GET"})
+     */
+    public function localidad(): Response
+    {
+        $localidads = $this->getDoctrine()
+            ->getRepository(Localidad::class)
+            ->findAll();
+
+        return $this->render('webapp/localidad.html.twig', [
+            'localidads' => $localidads,
+        ]);
+    }
+    
+    /**
      * @Route("/consulta/ficha/subsector/{id}", name="ficha_subsector", methods={"GET"})
      */
     public function ficha_subsector(Subsector $subsector): Response
     {
         return $this->render('ficha/subsector.html.twig', [
             'subsector' => $subsector,
+        ]);
+    }
+    
+    /**
+     * @Route("/consulta/ficha/localidad/{id}", name="ficha_localidad", methods={"GET"})
+     */
+    public function ficha_localidad(Localidad $localidad): Response
+    {
+        return $this->render('ficha/localidad.html.twig', [
+            'localidad' => $localidad
         ]);
     }
 

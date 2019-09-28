@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% set label_title = "Gestión Comunas" %}
+
+{% block title %}{{ label_title }}{% endblock %}
+
+{% block body %}
+    <h1>{{ label_title | upper }}</h1>
+    <br />
+    <a href="{{ path('comuna_new') }}" title="Añadir Nueva Comuna">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+    <br />
+    <table class="table table-bordered table-striped list-table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Comuna</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comuna in comunas %}
+            <tr scope="row">
+                <td>
+                    <a href="{{ path('comuna_show', {'id': comuna.id}) }}" 
+                       title="Ver Ficha Comuna {{ comuna.nombre }}">
+                        {{ comuna.nombre }}
+                    </a>
+                    <a href="{{ path('comuna_edit', {'id': comuna.id}) }}" 
+                          title="Editar Comuna {{ comuna.nombre }}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('provincia_show', {'id': comuna.provincia.id}) }}" 
+                       title="Ver Ficha Provincia {{ comuna.provincia.nombre }}">
+                        {{ comuna.provincia.nombre }}
+                    </a>
+                    <a href="{{ path('provincia_edit', {'id': comuna.provincia.id}) }}" 
+                          title="Editar Provincia {{ comuna.provincia.nombre }}">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                    </a>
+                </td>
+                <td>
+                        <a href="{{ path('region_index') }}" title="Ir a Gestión Regiones">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('provincia_index') }}" title="Ir a Gestión Provincias">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('subsector_index') }}" title="Ir a Gestión Sectores">
+                            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                        </a>
+                        <a href="{{ path('localidad_index') }}" title="Ir a Gestión Localidades">
+                            <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span>
+                        </a>
+                    </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
