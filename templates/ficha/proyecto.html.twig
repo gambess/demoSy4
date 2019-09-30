@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% set min_label = "Ministerio del Interior y Seguridad Pública" %}
+{% set subdere_label = "Subsecretaría de desarrollo regional y administrativo" %}
 {% set title_label = "Programa de " ~ proyecto.programa  %}
 {% set subtitle_label = "Ficha Identificación de Proyectos" %}
 
 {% block title %}{{ title_label }}{% endblock %}
 
 {% block body %}
-    <p class="h5"><u> MINISTERIO DEL INTERIOR Y SEGURIDAD PÚBLICA </u></p>
-    <p class="h5">SUBSECRETARÍA DE DESARROLLO REGIONAL Y ADMINISTRATIVO</p>
+    <div class="row">
+        <div class="col-12"><p class="h5"><u> {{ min_label | upper }} </u></p></div>
+        <div class="col-12"><p class="h5"><u> {{ subdere_label | upper }} </u></p></div>
+    </div>
     <br />
     <p class="h4">{{ title_label | upper }}</p>
     <p class="h4">ACCIONES CONCURRENTES</p>
@@ -17,19 +21,19 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-2 text-left"><p class="h5">1.- </p></div>
-        <div class="col-5 text-left"><p class="h5">ANTESCEDENTES GENERALES </p></div>
+        <div class="col-1 text-left"><p class="h5">1. </p></div>
+        <div class="col-6 text-left"><p class="h5">ANTESCEDENTES GENERALES </p></div>
         <div class="col-3 ficha-border"><p class="h5">FECHA: {{ proyecto.fecha ? proyecto.fecha|date('m/d/Y') : '' }}</p></div>
         <div class="col-2"></div>
     </div>
     <br />
     <div class="row ficha-border">
-        <div class="col-2"><p class="h5">REGIÓN: </p></div>
-        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.provincia.region.nombre }}</p></div>
+        <div class="col-1"><p class="h5">REGIÓN: </p></div>
+        <div class="col-3"><p class="h5">{{ proyecto.localidad.comuna.provincia.region.nombre }}</p></div>
         <div class="col-2"><p class="h5">PROVINCIA: </p></div>
-        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.provincia.nombre }}</p></div>
+        <div class="col-2"><p class="h5">{{ proyecto.localidad.comuna.provincia.nombre }}</p></div>
         <div class="col-2"><p class="h5">COMUNA: </p></div>
-        <div class="col-2"><p class="h6">{{ proyecto.localidad.comuna.nombre  }}</p></div>
+        <div class="col-2"><p class="h5">{{ proyecto.localidad.comuna.nombre  }}</p></div>
     </div>
     <br />
     <div class="row ficha-border">
@@ -64,8 +68,8 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-2 text-left"><p class="h5">2.- </p></div>
-        <div class="col-5 text-left"><p class="h5">JUSTIFICACIÓN </p></div>
+        <div class="col-1 text-left"><p class="h5">2. </p></div>
+        <div class="col-6 text-left"><p class="h5">JUSTIFICACIÓN </p></div>
         <div class="col-5"></div>
     </div>
     <div class="row">
@@ -77,9 +81,9 @@
     </div>
     <br />
     <div class="row">
-        <div class="col-2 text-left"><p class="h5">3.- </p></div>
+        <div class="col-1 text-left"><p class="h5">3. </p></div>
         <div class="col-6 text-left"><p class="h5">DESCRIPCIÓN DE LA ACCIÓN SOLICITADA </p></div>
-        <div class="col-4"></div>
+        <div class="col-5"></div>
     </div>
     <div class="row">
         <div class="col-12"><p class="h6">(Referencias a carencias de saneamiento básico de la localidad, en los casos de estudios o diseños.)</p></div>
@@ -88,6 +92,57 @@
     <br />
     <div class="row">
         <div class="col-12 text-justify"><p class="h5">{{ proyecto.descripcion }}</p></div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-1 text-left"><p class="h5">4. </p></div>
+        <div class="col-6 text-left"><p class="h5">PLAZO DE ELABORACIÓN O EJECUCIÓN: </p></div>
+        <div class="col-5 text-left"><p class="h5"> ____ (DIAS)  =  ____ (MESES)</p></div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-1 text-left"><p class="h5">5. </p></div>
+        <div class="col-2 text-left"><p class="h5">APORTES </p></div>
+        <div class="col-5 text-right"><p class="h5">Aporte Municipal</p></div>
+        <div class="col-4 text-left"><p class="h5"> :($) _________ </p></div>
+        <div class="col-3"></div>
+        <div class="col-5 text-right"><p class="h5">Aporte Terceros</p></div>
+        <div class="col-4 text-left"><p class="h5"> :($) _________ </p></div>
+        <div class="col-3"></div>
+        <div class="col-5 text-right"><p class="h5">Aporte SUBDERE</p></div>
+        <div class="col-4 text-left"><p class="h5"> :($) _________ </p></div>
+        <div class="col-3"></div>
+        <div class="col-5 text-right"><p class="h5"><strong>TOTAL</strong></p></div>
+        <div class="col-4 text-left"><p class="h5"> :($) _________ </p></div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-1 text-left"><p class="h5">6. </p></div>
+        <div class="col-6 text-left"><p class="h5">PROFESIONAL A CARGO DEL PROYECTO: </p></div>
+        <div class="col-5 text-left"><p class="h5"> ___________________________ </p></div>
+        <div class="col-1 text-left"></div>
+        <div class="col-6 text-left"><p class="h5">CORREO ELECTRÓNICO: </p></div>
+        <div class="col-5 text-left"><p class="h5"> ___________________________ </p></div>
+        <div class="col-1 text-left"></div>
+        <div class="col-6 text-left"><p class="h5">FONO(S): </p></div>
+        <div class="col-5 text-left"><p class="h5"> ___________________________ </p></div>
+    </div>
+    <br />
+    <div class="row ficha-border">
+        <div class="col-1 text-left"><p class="h5">7. </p></div>
+        <div class="col-6 text-left"><p class="h5">OBSERVACIONES: </p></div>
+        <div class="col-5 text-left"><p class="h5">  ___________________________ </p></div>
+        <div class="col-12 text-justify"><p class="h5">{#{{ proyecto.observacion }}#}</p></div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-12 text-justify">
+            <p class="h5">
+                <strong>NOTA:</strong> Se deberá adjuntar a la presente ficha, los términos técnicos de referencia 
+                con que se regirá la contratación del(de los) proyecto(s) aludido(s) y presupuesto
+                detallado que avale el monto de recursos requerido. 
+            </p>
+        </div>
     </div>
     <br />
     <div class="row">
