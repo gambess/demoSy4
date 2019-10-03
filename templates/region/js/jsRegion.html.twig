@@ -1,0 +1,119 @@
+<script>
+    var styles = [
+        {
+            featureType: "administrative",
+            elementType: "geometry",
+            stylers: [
+                {visibility: "on"},
+                {weight: 2},
+                {color: "#FFC107"}
+            ]
+        }
+        ,
+        {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [
+                {visibility: "off"}
+            ]
+        }
+        ,
+        {
+            featureType: "administrative.province",
+            elementType: "geometry",
+            stylers: [
+                {visibility: "on"},
+                {weight: 3},
+                {color: "#000000"}
+            ]
+        }
+        ,
+        {
+            featureType: "administrative.province",
+            elementType: "labels",
+            stylers: [
+                {visibility: "on"}
+            ]
+        }
+        ,
+        {
+            featureType: "administrative.locality",
+            stylers: [
+                {visibility: "off"}
+            ]
+        }
+        ,
+        {
+            featureType: "road",
+            elementType: "labels",
+            stylers: [
+                {visibility: "off"}
+            ]
+        }
+    ];
+    var map;
+    var service;
+    var infowindow;
+    var InforObj = [];
+    var regionCenter = {lat: {{ region.latitud }} , lng: {{ region.longitud }} };
+
+    function initMap() {
+        infowindow = new google.maps.InfoWindow();
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: regionCenter,
+            zoom: 9,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            mapTypeId: 'roadmap',{# mapTypeId: 'satellite', 'terrain', 'hybrid' #}
+            styles: styles
+        });
+        var geocoder = new google.maps.Geocoder();
+        geocodeAddress('{{ title_label }}', geocoder, map);
+    }
+
+    function geocodeAddress(address, geocoder, resultsMap) {
+        geocoder.geocode({'address': address}, function (results, status) {
+            if (status === 'OK') {
+                addMarkerInfo('{{ region.id }}',
+                        results[0].address_components[0].long_name,
+                        '{{ region.descripcion }}',
+                        regionCenter,
+                        resultsMap);
+                resultsMap.setCenter(regionCenter);
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
+        });
+    }
+
+    function addMarkerInfo(idRegion, placeName, description, position, map) {
+        var contentString = '<div class="alert alert-info" role="alert">'
+                + '<a href="/region/'
+                + idRegion + '/edit" title="Ir a Editar ' + placeName + '"><span class="h5">'
+                + placeName + ' </span><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>'
+                + '<p><small>' + description + '.</small></p></div>';
+        const marker = new google.maps.Marker({position: position, map: map});
+        const infowindow = new google.maps.InfoWindow({content: contentString, maxWidth: 350});
+        marker.addListener('click', function () {
+            closeOtherInfo();
+            infowindow.open(marker.get('map'), marker);
+            InforObj[0] = infowindow;
+        });
+        // marker.addListener('mouseover', function () {
+        //     closeOtherInfo();
+        //     infowindow.open(marker.get('map'), marker);
+        //     InforObj[0] = infowindow;
+        // });
+    }
+
+    function closeOtherInfo() {
+        if (InforObj.length > 0) {
+            /* detach the info-window from the marker ... undocumented in the API docs */
+            InforObj[0].set("marker", null);
+            /* and close it */
+            InforObj[0].close();
+            /* blank the array */
+            InforObj.length = 0;
+        }
+    }
+</script>
