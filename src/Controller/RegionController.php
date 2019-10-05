@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Region;
+use App\Entity\Provincia;
+use App\Entity\Comuna;
+use App\Entity\Localidad;
 use App\Form\RegionType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,8 +59,67 @@ class RegionController extends AbstractController
      */
     public function show(Region $region): Response
     {
+        $provincias = $this->getDoctrine()
+            ->getRepository(Provincia::class)
+            ->findBy(['region' => $region]);
+        
         return $this->render('region/show.html.twig', [
             'region' => $region,
+            'provincias' => $provincias,
+        ]);
+    }
+    
+    /**
+     * @Route("/{id}/provincia", name="region_show_provincia", methods={"GET"})
+     */
+    public function showProvincias(Region $region): Response
+    {
+        $provincias = $this->getDoctrine()
+            ->getRepository(Provincia::class)
+            ->findBy(['region' => $region]);
+
+        return $this->render('provincia/index.html.twig', [
+            'provincias' => $provincias,
+        ]);
+    }
+    
+    /**
+     * @Route("/{id}/comuna", name="region_show_comuna", methods={"GET"})
+     */
+    public function showComunas(Region $region): Response
+    {
+        $provincias = $this->getDoctrine()
+            ->getRepository(Provincia::class)
+            ->findBy(['region' => $region]);
+        
+        $comunas = $this->getDoctrine()
+            ->getRepository(Comuna::class)
+            ->findBy(['provincia' => $provincias]);
+
+        return $this->render('comuna/index.html.twig', [
+            'comunas' => $comunas,
+        ]);
+    }
+    
+    /**
+     * @Route("/{id}/localidad", name="region_show_localidad", methods={"GET"})
+     */
+    public function showLocalidadees(Region $region): Response
+    {
+        $provincias = $this->getDoctrine()
+            ->getRepository(Provincia::class)
+            ->findBy(['region' => $region]);
+        
+        $comunas = $this->getDoctrine()
+            ->getRepository(Comuna::class)
+            ->findBy(['provincia' => $provincias]);
+
+        $localidads = $this->getDoctrine()
+            ->getRepository(Localidad::class)
+            ->findBy(['comuna' => $comunas]);
+
+        return $this->render('localidad/index.html.twig', [
+            'localidads' => $localidads,
         ]);
     }
 
