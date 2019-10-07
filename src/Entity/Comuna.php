@@ -22,18 +22,46 @@ class Comuna
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="codigo", type="string", length=45, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=255, nullable=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=45, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="altura", type="string", length=255, nullable=true)
+     */
+    private $altura;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="latitud", type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="longitud", type="string", length=255, nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
+     */
+    private $descripcion;
 
     /**
      * @var \Provincia
@@ -45,26 +73,6 @@ class Comuna
      */
     private $provincia;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $latitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $longitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $descripcion;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $altura;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -75,7 +83,7 @@ class Comuna
         return $this->codigo;
     }
 
-    public function setCodigo(string $codigo): self
+    public function setCodigo(?string $codigo): self
     {
         $this->codigo = $codigo;
 
@@ -94,14 +102,14 @@ class Comuna
         return $this;
     }
 
-    public function getProvincia(): ?Provincia
+    public function getAltura(): ?string
     {
-        return $this->provincia;
+        return $this->altura;
     }
 
-    public function setProvincia(?Provincia $provincia): self
+    public function setAltura(?string $altura): self
     {
-        $this->provincia = $provincia;
+        $this->altura = $altura;
 
         return $this;
     }
@@ -142,14 +150,14 @@ class Comuna
         return $this;
     }
 
-    public function getAltura(): ?string
+    public function getProvincia(): ?Provincia
     {
-        return $this->altura;
+        return $this->provincia;
     }
 
-    public function setAltura(?string $altura): self
+    public function setProvincia(?Provincia $provincia): self
     {
-        $this->altura = $altura;
+        $this->provincia = $provincia;
 
         return $this;
     }

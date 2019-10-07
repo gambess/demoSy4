@@ -2,24 +2,24 @@
 
 namespace App\Form;
 
-use App\Entity\Casa;
+use App\Entity\Vivienda;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CasaType extends AbstractType
+class ViviendaType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo')
             ->add('nombre')
             ->add('personas')
-            ->add('longitud')
-            ->add('latitud')
             ->add('altura')
+            ->add('latitud')
+            ->add('longitud')
+            ->add('descripcion')
             ->add('localidad')
-            ->add('subsector')
-            ->add('sector')
             ->add('propietario')
         ;
     }
@@ -27,7 +27,7 @@ class CasaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Casa::class,
+            'data_class' => Vivienda::class,
         ]);
     }
 }

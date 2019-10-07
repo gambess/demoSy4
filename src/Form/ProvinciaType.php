@@ -17,16 +17,15 @@ class ProvinciaType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
-            ->add('region', EntityType::class, [
+	    ->add('region', EntityType::class, [
                 'class' => Region::class,
                 'choice_label' => 'nombre',
             ])
+            ->add('altura')
             ->add('latitud')
             ->add('longitud')
-            ->add('altura')
-            ->add('descripcion')
-            
-            ;
+            ->add('descripcion')    
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

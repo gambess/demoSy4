@@ -16,13 +16,13 @@ class SubsectorType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
-            ->add('latitud')
-            ->add('longitud')
-            ->add('altura')
-            ->add('sector', EntityType::class, [
+	    ->add('sector', EntityType::class, [
             'class' => Sector::class,
             'choice_label' => 'nombre',
             ])
+            ->add('altura')
+            ->add('latitud')
+            ->add('longitud')
             ->add('descripcion')
         ;
     }

@@ -14,9 +14,9 @@ class RegionType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
+            ->add('altura')
             ->add('latitud')
             ->add('longitud')
-            ->add('altura')
             ->add('descripcion')
         ;
     }

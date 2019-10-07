@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Localidad
  *
- * @ORM\Table(name="localidad", uniqueConstraints={@ORM\UniqueConstraint(name="code_UNIQUE", columns={"codigo"})}, indexes={@ORM\Index(name="fk_localidad_comuna1_idx", columns={"comuna_id"}), @ORM\Index(name="fk_Localidad_sector1_idx", columns={"sector_id"}), @ORM\Index(name="fk_Localidad_subsector1_idx", columns={"subsector_id"})})
+ * @ORM\Table(name="localidad", uniqueConstraints={@ORM\UniqueConstraint(name="code_UNIQUE", columns={"codigo"})}, indexes={@ORM\Index(name="fk_localidad_subsector1_idx", columns={"subsector_id"})})
  * @ORM\Entity
  */
 class Localidad
@@ -22,67 +22,81 @@ class Localidad
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="codigo", type="string", length=100, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=255, nullable=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=100, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
 
     /**
-     * @var string
+     * @var int|null
      *
-     * @ORM\Column(name="altura", type="string", length=45, nullable=false)
-     */
-    private $altura;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="personas", type="integer", nullable=false)
+     * @ORM\Column(name="personas", type="integer", nullable=true)
      */
     private $personas;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="casas", type="integer", nullable=false)
+     * @ORM\Column(name="casas", type="integer", nullable=true)
      */
     private $casas;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="pararrayos", type="integer", nullable=false)
+     * @ORM\Column(name="pararrayos", type="integer", nullable=true)
      */
     private $pararrayos;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="prioridad", type="string", length=10, nullable=false)
+     * @ORM\Column(name="prioridad", type="string", length=255, nullable=true)
      */
     private $prioridad;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="alumbrado_publico", type="text", length=0, nullable=true)
+     * @ORM\Column(name="alumbrado_publico", type="string", length=255, nullable=true)
      */
     private $alumbradoPublico;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="motivo", type="string", length=100, nullable=true)
+     * @ORM\Column(name="motivo", type="string", length=255, nullable=true)
      */
     private $motivo;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="altura", type="string", length=255, nullable=true)
+     */
+    private $altura;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="latitud", type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="longitud", type="string", length=255, nullable=true)
+     */
+    private $longitud;
 
     /**
      * @var string|null
@@ -90,26 +104,6 @@ class Localidad
      * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
      */
     private $descripcion;
-
-    /**
-     * @var \Comuna
-     *
-     * @ORM\ManyToOne(targetEntity="Comuna")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="comuna_id", referencedColumnName="id")
-     * })
-     */
-    private $comuna;
-
-    /**
-     * @var \Sector
-     *
-     * @ORM\ManyToOne(targetEntity="Sector")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sector_id", referencedColumnName="id")
-     * })
-     */
-    private $sector;
 
     /**
      * @var \Subsector
@@ -121,16 +115,6 @@ class Localidad
      */
     private $subsector;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $latitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $longitud;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -141,7 +125,7 @@ class Localidad
         return $this->codigo;
     }
 
-    public function setCodigo(string $codigo): self
+    public function setCodigo(?string $codigo): self
     {
         $this->codigo = $codigo;
 
@@ -160,24 +144,12 @@ class Localidad
         return $this;
     }
 
-    public function getAltura(): ?string
-    {
-        return $this->altura;
-    }
-
-    public function setAltura(string $altura): self
-    {
-        $this->altura = $altura;
-
-        return $this;
-    }
-
     public function getPersonas(): ?int
     {
         return $this->personas;
     }
 
-    public function setPersonas(int $personas): self
+    public function setPersonas(?int $personas): self
     {
         $this->personas = $personas;
 
@@ -189,7 +161,7 @@ class Localidad
         return $this->casas;
     }
 
-    public function setCasas(int $casas): self
+    public function setCasas(?int $casas): self
     {
         $this->casas = $casas;
 
@@ -201,7 +173,7 @@ class Localidad
         return $this->pararrayos;
     }
 
-    public function setPararrayos(int $pararrayos): self
+    public function setPararrayos(?int $pararrayos): self
     {
         $this->pararrayos = $pararrayos;
 
@@ -213,7 +185,7 @@ class Localidad
         return $this->prioridad;
     }
 
-    public function setPrioridad(string $prioridad): self
+    public function setPrioridad(?string $prioridad): self
     {
         $this->prioridad = $prioridad;
 
@@ -244,50 +216,14 @@ class Localidad
         return $this;
     }
 
-    public function getDescripcion(): ?string
+    public function getAltura(): ?string
     {
-        return $this->descripcion;
+        return $this->altura;
     }
 
-    public function setDescripcion(?string $descripcion): self
+    public function setAltura(?string $altura): self
     {
-        $this->descripcion = $descripcion;
-
-        return $this;
-    }
-
-    public function getComuna(): ?Comuna
-    {
-        return $this->comuna;
-    }
-
-    public function setComuna(?Comuna $comuna): self
-    {
-        $this->comuna = $comuna;
-
-        return $this;
-    }
-
-    public function getSector(): ?Sector
-    {
-        return $this->sector;
-    }
-
-    public function setSector(?Sector $sector): self
-    {
-        $this->sector = $sector;
-
-        return $this;
-    }
-
-    public function getSubsector(): ?Subsector
-    {
-        return $this->subsector;
-    }
-
-    public function setSubsector(?Subsector $subsector): self
-    {
-        $this->subsector = $subsector;
+        $this->altura = $altura;
 
         return $this;
     }
@@ -312,6 +248,30 @@ class Localidad
     public function setLongitud(?string $longitud): self
     {
         $this->longitud = $longitud;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getSubsector(): ?Subsector
+    {
+        return $this->subsector;
+    }
+
+    public function setSubsector(?Subsector $subsector): self
+    {
+        $this->subsector = $subsector;
 
         return $this;
     }

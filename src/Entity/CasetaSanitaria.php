@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * CasetaSanitaria
  *
- * @ORM\Table(name="caseta_sanitaria", indexes={@ORM\Index(name="fk_caseta_sanitaria_subsector1_idx", columns={"subsector_id"})})
+ * @ORM\Table(name="caseta_sanitaria")
  * @ORM\Entity
  */
 class CasetaSanitaria
@@ -21,31 +21,9 @@ class CasetaSanitaria
      */
     private $id;
 
-    /**
-     * @var \Subsector
-     *
-     * @ORM\ManyToOne(targetEntity="Subsector")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
-     * })
-     */
-    private $subsector;
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getSubsector(): ?Subsector
-    {
-        return $this->subsector;
-    }
-
-    public function setSubsector(?Subsector $subsector): self
-    {
-        $this->subsector = $subsector;
-
-        return $this;
     }
 
 

@@ -14,6 +14,11 @@ class SectorType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
+            ->add('latitud')
+            ->add('longitud')
+            ->add('altura')
+            ->add('descripcion')
+            ->add('comuna')
         ;
     }
 

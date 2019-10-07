@@ -17,6 +17,7 @@ class PropietarioType extends AbstractType
             ->add('apellido2')
             ->add('tipoDocumento')
             ->add('numeroDocumento')
+            ->add('descripcion')
         ;
     }
 

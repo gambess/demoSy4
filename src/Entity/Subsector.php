@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Subsector
  *
- * @ORM\Table(name="subsector", indexes={@ORM\Index(name="fk_subsector_sector1_idx", columns={"sector_id"})})
+ * @ORM\Table(name="subsector", uniqueConstraints={@ORM\UniqueConstraint(name="codigo_UNIQUE", columns={"codigo"})}, indexes={@ORM\Index(name="fk_subsector_sector1_idx", columns={"sector_id"})})
  * @ORM\Entity
  */
 class Subsector
@@ -24,16 +24,9 @@ class Subsector
     /**
      * @var string|null
      *
-     * @ORM\Column(name="altura", type="string", length=45, nullable=true)
+     * @ORM\Column(name="codigo", type="string", length=255, nullable=true)
      */
-    private $altura;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
-     */
-    private $descripcion;
+    private $codigo;
 
     /**
      * @var string
@@ -43,11 +36,32 @@ class Subsector
     private $nombre;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="codigo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="altura", type="string", length=45, nullable=true)
      */
-    private $codigo;
+    private $altura;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="latitud", type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="longitud", type="string", length=255, nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
+     */
+    private $descripcion;
 
     /**
      * @var \Sector
@@ -59,41 +73,19 @@ class Subsector
      */
     private $sector;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $latitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $longitud;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getAltura(): ?string
+    public function getCodigo(): ?string
     {
-        return $this->altura;
+        return $this->codigo;
     }
 
-    public function setAltura(?string $altura): self
+    public function setCodigo(?string $codigo): self
     {
-        $this->altura = $altura;
-
-        return $this;
-    }
-
-    public function getDescripcion(): ?string
-    {
-        return $this->descripcion;
-    }
-
-    public function setDescripcion(?string $descripcion): self
-    {
-        $this->descripcion = $descripcion;
+        $this->codigo = $codigo;
 
         return $this;
     }
@@ -110,26 +102,14 @@ class Subsector
         return $this;
     }
 
-    public function getCodigo(): ?string
+    public function getAltura(): ?string
     {
-        return $this->codigo;
+        return $this->altura;
     }
 
-    public function setCodigo(string $codigo): self
+    public function setAltura(?string $altura): self
     {
-        $this->codigo = $codigo;
-
-        return $this;
-    }
-
-    public function getSector(): ?Sector
-    {
-        return $this->sector;
-    }
-
-    public function setSector(?Sector $sector): self
-    {
-        $this->sector = $sector;
+        $this->altura = $altura;
 
         return $this;
     }
@@ -154,6 +134,30 @@ class Subsector
     public function setLongitud(?string $longitud): self
     {
         $this->longitud = $longitud;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    public function getSector(): ?Sector
+    {
+        return $this->sector;
+    }
+
+    public function setSector(?Sector $sector): self
+    {
+        $this->sector = $sector;
 
         return $this;
     }

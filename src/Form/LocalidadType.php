@@ -18,27 +18,20 @@ class LocalidadType extends AbstractType
         $builder
             ->add('codigo')
             ->add('nombre')
-            ->add('altura')
-            ->add('sector', EntityType::class, [
-                'class' => Sector::class,
-                'choice_label' => 'nombre',
-            ])
-            ->add('subsector', EntityType::class, [
+	    ->add('subsector', EntityType::class, [
                 'class' => Subsector::class,
                 'choice_label' => 'nombre',
             ])
-            ->add('comuna', EntityType::class, [
-                'class' => Comuna::class,
-                'choice_label' => 'nombre',
-            ])
-            ->add('personas')
+            ->add('altura')
+            ->add('latitud')
+            ->add('longitud')
+            ->add('prioridad')
+	    ->add('motivo')
+	    ->add('personas')
             ->add('casas')
             ->add('pararrayos')
-            ->add('prioridad')
             ->add('alumbradoPublico')
-            ->add('motivo')
             ->add('descripcion')
-            
         ;
     }
 

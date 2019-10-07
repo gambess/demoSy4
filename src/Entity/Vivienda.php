@@ -5,12 +5,12 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Provincia
+ * Vivienda
  *
- * @ORM\Table(name="provincia", uniqueConstraints={@ORM\UniqueConstraint(name="code_UNIQUE", columns={"codigo"})}, indexes={@ORM\Index(name="fk_provincia_region_idx", columns={"region_id"})})
+ * @ORM\Table(name="vivienda", uniqueConstraints={@ORM\UniqueConstraint(name="codigo_UNIQUE", columns={"codigo"})}, indexes={@ORM\Index(name="fk_casa_Localidad1_idx", columns={"localidad_id"}), @ORM\Index(name="fk_casa_propietario1_idx", columns={"propietario_id"})})
  * @ORM\Entity
  */
-class Provincia
+class Vivienda
 {
     /**
      * @var int
@@ -34,6 +34,13 @@ class Provincia
      * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="personas", type="integer", nullable=true)
+     */
+    private $personas;
 
     /**
      * @var string|null
@@ -64,14 +71,24 @@ class Provincia
     private $descripcion;
 
     /**
-     * @var \Region
+     * @var \Localidad
      *
-     * @ORM\ManyToOne(targetEntity="Region")
+     * @ORM\ManyToOne(targetEntity="Localidad")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
      * })
      */
-    private $region;
+    private $localidad;
+
+    /**
+     * @var \Propietario
+     *
+     * @ORM\ManyToOne(targetEntity="Propietario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="propietario_id", referencedColumnName="id")
+     * })
+     */
+    private $propietario;
 
     public function getId(): ?int
     {
@@ -98,6 +115,18 @@ class Provincia
     public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getPersonas(): ?int
+    {
+        return $this->personas;
+    }
+
+    public function setPersonas(?int $personas): self
+    {
+        $this->personas = $personas;
 
         return $this;
     }
@@ -150,14 +179,26 @@ class Provincia
         return $this;
     }
 
-    public function getRegion(): ?Region
+    public function getLocalidad(): ?Localidad
     {
-        return $this->region;
+        return $this->localidad;
     }
 
-    public function setRegion(?Region $region): self
+    public function setLocalidad(?Localidad $localidad): self
     {
-        $this->region = $region;
+        $this->localidad = $localidad;
+
+        return $this;
+    }
+
+    public function getPropietario(): ?Propietario
+    {
+        return $this->propietario;
+    }
+
+    public function setPropietario(?Propietario $propietario): self
+    {
+        $this->propietario = $propietario;
 
         return $this;
     }

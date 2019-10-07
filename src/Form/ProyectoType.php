@@ -16,20 +16,31 @@ class ProyectoType extends AbstractType
     {
         $builder
             ->add('codigo')
-            ->add('localidad', EntityType::class, [
+            ->add('nombre')
+	    ->add('producto')
+	    ->add('localidad', EntityType::class, [
                 'class' => Localidad::class,
                 'choice_label' => 'nombre',
             ])
-            ->add('nombre')
             ->add('codigoBip')
-            ->add('tipologiaAccion',TextareaType::class)
+            ->add('tipologiaAccion')
             ->add('justificacion',TextareaType::class)
             ->add('descripcion',TextareaType::class)
-            ->add('programa',TextareaType::class)
+            ->add('programa')
             ->add('beneficiariosDirectos')
             ->add('beneficiariosIndirectos')
             ->add('estimadoViviendas')
-            ->add('fecha')
+            ->add('fechaAprobacion')
+            ->add('archivosAdjuntos')
+            ->add('plazoElaboracion')
+            ->add('plazoEjecucion')
+            ->add('aporteMunicipal')
+            ->add('aporteTerceros')
+            ->add('aporteSubdere')
+            ->add('profesionalACargo')
+            ->add('correoElectronico')
+            ->add('telefonos')
+            ->add('obervaciones',TextareaType::class)
         ;
     }
 

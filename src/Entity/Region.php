@@ -22,36 +22,44 @@ class Region
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      *
-     * @ORM\Column(name="codigo", type="string", length=45, nullable=false)
+     * @ORM\Column(name="codigo", type="string", length=255, nullable=true)
      */
     private $codigo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=45, nullable=false)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $latitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $longitud;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="altura", type="string", length=255, nullable=true)
      */
     private $altura;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @var string|null
+     *
+     * @ORM\Column(name="latitud", type="string", length=255, nullable=true)
+     */
+    private $latitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="longitud", type="string", length=255, nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
      */
     private $descripcion;
 
@@ -65,7 +73,7 @@ class Region
         return $this->codigo;
     }
 
-    public function setCodigo(string $codigo): self
+    public function setCodigo(?string $codigo): self
     {
         $this->codigo = $codigo;
 
@@ -80,6 +88,18 @@ class Region
     public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    public function getAltura(): ?string
+    {
+        return $this->altura;
+    }
+
+    public function setAltura(?string $altura): self
+    {
+        $this->altura = $altura;
 
         return $this;
     }
@@ -104,18 +124,6 @@ class Region
     public function setLongitud(?string $longitud): self
     {
         $this->longitud = $longitud;
-
-        return $this;
-    }
-
-    public function getAltura(): ?string
-    {
-        return $this->altura;
-    }
-
-    public function setAltura(?string $altura): self
-    {
-        $this->altura = $altura;
 
         return $this;
     }

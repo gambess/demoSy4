@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Provincia;
 use App\Form\ProvinciaType;
-use App\Entity\Region;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * @Route("/provincia")

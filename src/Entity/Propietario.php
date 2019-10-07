@@ -22,39 +22,46 @@ class Propietario
     private $id;
 
     /**
-     * @var string|null
+     * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=45, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=255, nullable=false)
      */
     private $nombre;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="apellido1", type="string", length=45, nullable=true)
+     * @ORM\Column(name="apellido1", type="string", length=255, nullable=true)
      */
     private $apellido1;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="apellido2", type="string", length=45, nullable=true)
+     * @ORM\Column(name="apellido2", type="string", length=255, nullable=true)
      */
     private $apellido2;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="tipo_documento", type="string", length=45, nullable=true)
+     * @ORM\Column(name="tipo_documento", type="string", length=255, nullable=true)
      */
     private $tipoDocumento;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="numero_documento", type="string", length=45, nullable=true)
+     * @ORM\Column(name="numero_documento", type="string", length=255, nullable=true)
      */
     private $numeroDocumento;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
+     */
+    private $descripcion;
 
     public function getId(): ?int
     {
@@ -66,7 +73,7 @@ class Propietario
         return $this->nombre;
     }
 
-    public function setNombre(?string $nombre): self
+    public function setNombre(string $nombre): self
     {
         $this->nombre = $nombre;
 
@@ -117,6 +124,18 @@ class Propietario
     public function setNumeroDocumento(?string $numeroDocumento): self
     {
         $this->numeroDocumento = $numeroDocumento;
+
+        return $this;
+    }
+
+    public function getDescripcion(): ?string
+    {
+        return $this->descripcion;
+    }
+
+    public function setDescripcion(?string $descripcion): self
+    {
+        $this->descripcion = $descripcion;
 
         return $this;
     }

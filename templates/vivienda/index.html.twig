@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vivienda index{% endblock %}
+
+{% block body %}
+    <h1>Vivienda index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Personas</th>
+                <th>Altura</th>
+                <th>Latitud</th>
+                <th>Longitud</th>
+                <th>Descripcion</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vivienda in viviendas %}
+            <tr>
+                <td>{{ vivienda.id }}</td>
+                <td>{{ vivienda.codigo }}</td>
+                <td>{{ vivienda.nombre }}</td>
+                <td>{{ vivienda.personas }}</td>
+                <td>{{ vivienda.altura }}</td>
+                <td>{{ vivienda.latitud }}</td>
+                <td>{{ vivienda.longitud }}</td>
+                <td>{{ vivienda.descripcion }}</td>
+                <td>
+                    <a href="{{ path('vivienda_show', {'id': vivienda.id}) }}">show</a>
+                    <a href="{{ path('vivienda_edit', {'id': vivienda.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vivienda_new') }}">Create new</a>
+{% endblock %}

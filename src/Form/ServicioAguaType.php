@@ -12,7 +12,6 @@ class ServicioAguaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('casa')
         ;
     }
 
