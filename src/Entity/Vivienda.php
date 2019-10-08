@@ -62,6 +62,13 @@ class Vivienda
      * @ORM\Column(name="longitud", type="string", length=255, nullable=true)
      */
     private $longitud;
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="tipo", type="string", length=255, nullable=true)
+     */
+    private $tipo;
 
     /**
      * @var string|null
@@ -163,6 +170,18 @@ class Vivienda
     public function setLongitud(?string $longitud): self
     {
         $this->longitud = $longitud;
+
+        return $this;
+    }
+    
+    public function gettipo(): ?string
+    {
+        return $this->tipo;
+    }
+
+    public function setTipo(?string $tipo): self
+    {
+        $this->tipo = $tipo;
 
         return $this;
     }
