@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -64,14 +66,19 @@ class Subsector
     private $descripcion;
 
     /**
-     * @var \Sector
-     *
-     * @ORM\ManyToOne(targetEntity="Sector")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sector_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Sector", inversedBy="subsectors")
      */
     private $sector;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Localidad", mappedBy="subsector")
+     */
+    private $localidades;
+
+    public function __construct()
+    {
+        $this->localidades = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +165,37 @@ class Subsector
     public function setSector(?Sector $sector): self
     {
         $this->sector = $sector;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Localidad[]
+     */
+    public function getLocalidades(): Collection
+    {
+        return $this->localidades;
+    }
+
+    public function addLocalidade(Localidad $localidade): self
+    {
+        if (!$this->localidades->contains($localidade)) {
+            $this->localidades[] = $localidade;
+            $localidade->setSubsector($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalidade(Localidad $localidade): self
+    {
+        if ($this->localidades->contains($localidade)) {
+            $this->localidades->removeElement($localidade);
+            // set the owning side to null (unless already changed)
+            if ($localidade->getSubsector() === $this) {
+                $localidade->setSubsector(null);
+            }
+        }
 
         return $this;
     }

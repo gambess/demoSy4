@@ -78,22 +78,12 @@ class Vivienda
     private $descripcion;
 
     /**
-     * @var \Localidad
-     *
-     * @ORM\ManyToOne(targetEntity="Localidad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Localidad", inversedBy="viviendas")
      */
     private $localidad;
 
     /**
-     * @var \Propietario
-     *
-     * @ORM\ManyToOne(targetEntity="Propietario")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="propietario_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Propietario", inversedBy="viviendas")
      */
     private $propietario;
 

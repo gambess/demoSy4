@@ -14,19 +14,20 @@
     <table class="table table-bordered table-striped list-table">
         <thead class="thead-dark">
             <tr scope="row">
-                <th scope="col">Nombre</th>
-                <th scope="col">Localidad</th>
-                <th scope="col">Código B.I.P.</th>
-                <th scope="col">Tipología Acción</th>
-                <th scope="col">Justificación</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">CÓDIGO B.I.P.</th>
+                <th scope="col">NOMBRE</th>
+                <th scope="col">LOCALIDAD</th>
+                <th scope="col">TIPOLOGÍA ACCIÓN</th>
+                <th scope="col">JUSTIFICACIÓN</th>
+                <th scope="col">DESCRIPCIÓN</th>
+                <th scope="col">FECHA APROBACIÓN</th>
+                <th scope="col">ACCIONES</th>
             </tr>
         </thead>
         <tbody>
             {% for proyecto in proyectos %}
                 <tr scope="row">
+                    <td>{{ proyecto.codigoBip }}</td>
                     <td>
                         <a href="{{ path('proyecto_show', {'id': proyecto.id}) }}" 
                            title="Ir a Ficha Proyecto {{ proyecto.nombre }}">
@@ -47,11 +48,10 @@
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>
-                    <td>{{ proyecto.codigoBip }}</td>
                     <td>{{ proyecto.tipologiaAccion }}</td>
                     <td>{{ proyecto.justificacion }}</td>
                     <td>{{ proyecto.descripcion }}</td>
-                    <td>{{ proyecto.fecha ? proyecto.fecha|date('d-m-Y') : '' }}</td>
+                    <td>{{ proyecto.fechaAprobacion ? proyecto.fechaAprobacion|date('d-m-Y') : '' }}</td>
                     <td>
                         <a href="{{ path('region_index') }}" title="Ir a Gestiona Regiones">
                             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>

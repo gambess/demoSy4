@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -64,14 +66,19 @@ class Comuna
     private $descripcion;
 
     /**
-     * @var \Provincia
-     *
-     * @ORM\ManyToOne(targetEntity="Provincia")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="provincia_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Provincia", inversedBy="comunas")
      */
     private $provincia;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Sector", mappedBy="comuna")
+     */
+    private $sectors;
+
+    public function __construct()
+    {
+        $this->sectors = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -162,5 +169,35 @@ class Comuna
         return $this;
     }
 
+    /**
+     * @return Collection|Sector[]
+     */
+    public function getSectors(): Collection
+    {
+        return $this->sectors;
+    }
+
+    public function addSector(Sector $sector): self
+    {
+        if (!$this->sectors->contains($sector)) {
+            $this->sectors[] = $sector;
+            $sector->setComuna($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSector(Sector $sector): self
+    {
+        if ($this->sectors->contains($sector)) {
+            $this->sectors->removeElement($sector);
+            // set the owning side to null (unless already changed)
+            if ($sector->getComuna() === $this) {
+                $sector->setComuna(null);
+            }
+        }
+
+        return $this;
+    }
 
 }

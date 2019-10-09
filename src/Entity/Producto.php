@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,16 @@ class Producto
      */
     private $nombre;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="producto")
+     */
+    private $proyectos;
+
+    public function __construct()
+    {
+        $this->proyectos = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -60,6 +72,37 @@ class Producto
     public function setNombre(?string $nombre): self
     {
         $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Proyecto[]
+     */
+    public function getProyectos(): Collection
+    {
+        return $this->proyectos;
+    }
+
+    public function addProyecto(Proyecto $proyecto): self
+    {
+        if (!$this->proyectos->contains($proyecto)) {
+            $this->proyectos[] = $proyecto;
+            $proyecto->setProducto($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProyecto(Proyecto $proyecto): self
+    {
+        if ($this->proyectos->contains($proyecto)) {
+            $this->proyectos->removeElement($proyecto);
+            // set the owning side to null (unless already changed)
+            if ($proyecto->getProducto() === $this) {
+                $proyecto->setProducto(null);
+            }
+        }
 
         return $this;
     }

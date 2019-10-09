@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -64,14 +66,19 @@ class Provincia
     private $descripcion;
 
     /**
-     * @var \Region
-     *
-     * @ORM\ManyToOne(targetEntity="Region")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Region", inversedBy="provincias")
      */
     private $region;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comuna", mappedBy="provincia")
+     */
+    private $comunas;
+
+    public function __construct()
+    {
+        $this->comunas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -161,6 +168,39 @@ class Provincia
 
         return $this;
     }
+
+    /**
+     * @return Collection|Comuna[]
+     */
+    public function getComunas(): Collection
+    {
+        return $this->comunas;
+    }
+
+    public function addComuna(Comuna $comuna): self
+    {
+        if (!$this->comunas->contains($comuna)) {
+            $this->comunas[] = $comuna;
+            $comuna->setProvincia($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComuna(Comuna $comuna): self
+    {
+        if ($this->comunas->contains($comuna)) {
+            $this->comunas->removeElement($comuna);
+            // set the owning side to null (unless already changed)
+            if ($comuna->getProvincia() === $this) {
+                $comuna->setProvincia(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 }

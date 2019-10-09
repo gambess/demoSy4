@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -106,14 +108,25 @@ class Localidad
     private $descripcion;
 
     /**
-     * @var \Subsector
-     *
-     * @ORM\ManyToOne(targetEntity="Subsector")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="subsector_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Subsector", inversedBy="localidades")
      */
     private $subsector;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="localidad")
+     */
+    private $proyectos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vivienda", mappedBy="localidad")
+     */
+    private $viviendas;
+
+    public function __construct()
+    {
+        $this->proyectos = new ArrayCollection();
+        $this->viviendas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -272,6 +285,68 @@ class Localidad
     public function setSubsector(?Subsector $subsector): self
     {
         $this->subsector = $subsector;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Proyecto[]
+     */
+    public function getProyectos(): Collection
+    {
+        return $this->proyectos;
+    }
+
+    public function addProyecto(Proyecto $proyecto): self
+    {
+        if (!$this->proyectos->contains($proyecto)) {
+            $this->proyectos[] = $proyecto;
+            $proyecto->setLocalidad($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProyecto(Proyecto $proyecto): self
+    {
+        if ($this->proyectos->contains($proyecto)) {
+            $this->proyectos->removeElement($proyecto);
+            // set the owning side to null (unless already changed)
+            if ($proyecto->getLocalidad() === $this) {
+                $proyecto->setLocalidad(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vivienda[]
+     */
+    public function getViviendas(): Collection
+    {
+        return $this->viviendas;
+    }
+
+    public function addVivienda(Vivienda $vivienda): self
+    {
+        if (!$this->viviendas->contains($vivienda)) {
+            $this->viviendas[] = $vivienda;
+            $vivienda->setLocalidad($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVivienda(Vivienda $vivienda): self
+    {
+        if ($this->viviendas->contains($vivienda)) {
+            $this->viviendas->removeElement($vivienda);
+            // set the owning side to null (unless already changed)
+            if ($vivienda->getLocalidad() === $this) {
+                $vivienda->setLocalidad(null);
+            }
+        }
 
         return $this;
     }

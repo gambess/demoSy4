@@ -11,31 +11,30 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\PersistentCollection;
 
 /**
  * @Route("/region")
  */
-class RegionController extends AbstractController
-{
+class RegionController extends AbstractController {
+
     /**
      * @Route("/", name="region_index", methods={"GET"})
      */
-    public function index(): Response
-    {
+    public function index(): Response {
         $regions = $this->getDoctrine()
-            ->getRepository(Region::class)
-            ->findAll();
+                ->getRepository(Region::class)
+                ->findAll();
 
         return $this->render('region/index.html.twig', [
-            'regions' => $regions,
+                    'regions' => $regions,
         ]);
     }
 
     /**
      * @Route("/new", name="region_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
-    {
+    public function new(Request $request): Response {
         $region = new Region();
         $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
@@ -49,85 +48,70 @@ class RegionController extends AbstractController
         }
 
         return $this->render('region/new.html.twig', [
-            'region' => $region,
-            'form' => $form->createView(),
+                    'region' => $region,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="region_show", methods={"GET"})
      */
-    public function show(Region $region): Response
-    {
-        $provincias = $this->getDoctrine()
-            ->getRepository(Provincia::class)
-            ->findBy(['region' => $region]);
-        
+    public function show(Region $region): Response {
+        $provincias = $region->getProvincias();
+
         return $this->render('region/show.html.twig', [
-            'region' => $region,
-            'provincias' => $provincias,
+                    'region' => $region,
+                    'provincias' => $provincias,
         ]);
     }
-    
+
     /**
      * @Route("/{id}/provincia", name="region_show_provincia", methods={"GET"})
      */
-    public function showProvincias(Region $region): Response
-    {
-        $provincias = $this->getDoctrine()
-            ->getRepository(Provincia::class)
-            ->findBy(['region' => $region]);
+    public function showProvincias(Region $region): Response {
+        $provincias = $region->getProvincias();
 
         return $this->render('provincia/index.html.twig', [
-            'provincias' => $provincias,
+                    'provincias' => $provincias,
         ]);
     }
-    
+
     /**
      * @Route("/{id}/comuna", name="region_show_comuna", methods={"GET"})
      */
-    public function showComunas(Region $region): Response
-    {
-        $provincias = $this->getDoctrine()
-            ->getRepository(Provincia::class)
-            ->findBy(['region' => $region]);
-        
-        $comunas = $this->getDoctrine()
-            ->getRepository(Comuna::class)
-            ->findBy(['provincia' => $provincias]);
+    public function showComunas(Region $region): Response {
+        $provincias = $region->getProvincias();
+        $comunas = $this->getRelatedEntityFromEntity($provincias, 'App\Entity\Provincia', 'getComunas');
 
         return $this->render('comuna/index.html.twig', [
-            'comunas' => $comunas,
+                    'comunas' => $comunas,
         ]);
     }
-    
+
     /**
      * @Route("/{id}/localidad", name="region_show_localidad", methods={"GET"})
      */
-    public function showLocalidadees(Region $region): Response
+    public function showLocalidades(Region $region): Response 
     {
-        $provincias = $this->getDoctrine()
-            ->getRepository(Provincia::class)
-            ->findBy(['region' => $region]);
-        
-        $comunas = $this->getDoctrine()
-            ->getRepository(Comuna::class)
-            ->findBy(['provincia' => $provincias]);
+        $provincias = $region->getProvincias();
+        $comunas = $this->getComunasFromProvincias($provincias);
+        $sectores = $this->getRelatedEntityFromEntity($comunas, 'App\Entity\Comuna', 'getSectors');
+        $subsectores = $this->getRelatedEntityFromEntity($sectores, 'App\Entity\Sector', 'getSubsectors');
+        $localidads = $this->getRelatedEntityFromEntity($subsectores, 'App\Entity\Subsector', 'getLocalidades');
 
-        $localidads = $this->getDoctrine()
-            ->getRepository(Localidad::class)
-            ->findBy(['comuna' => $comunas]);
+//        $localidads = $this->getDoctrine()
+//                ->getRepository(Localidad::class)
+//                ->findBy(['comuna' => $comunas]);
 
         return $this->render('localidad/index.html.twig', [
-            'localidads' => $localidads,
+                    'localidads' => $localidads,
         ]);
     }
 
     /**
      * @Route("/{id}/edit", name="region_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Region $region): Response
-    {
+    public function edit(Request $request, Region $region): Response {
         $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
 
@@ -138,17 +122,16 @@ class RegionController extends AbstractController
         }
 
         return $this->render('region/edit.html.twig', [
-            'region' => $region,
-            'form' => $form->createView(),
+                    'region' => $region,
+                    'form' => $form->createView(),
         ]);
     }
 
     /**
      * @Route("/{id}", name="region_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Region $region): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$region->getId(), $request->request->get('_token'))) {
+    public function delete(Request $request, Region $region): Response {
+        if ($this->isCsrfTokenValid('delete' . $region->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($region);
             $entityManager->flush();
@@ -156,4 +139,35 @@ class RegionController extends AbstractController
 
         return $this->redirectToRoute('region_index');
     }
+
+    private function getComunasFromProvincias(PersistentCollection $provincias): array {
+        $comunas = [];
+
+        foreach ($provincias as $provincia) {
+            foreach ($provincia->getComunas() as $comuna) {
+
+                $comunas[] = $comuna;
+            }
+        }
+        return $comunas;
+    }
+
+    private function getRelatedEntityFromEntity(array $mainEntity,
+            string $mainEntityName, string $nameMethod): array 
+    {
+        $result = [];
+
+        $reflectionMethod = new \ReflectionMethod($mainEntityName, $nameMethod);
+
+        foreach ($mainEntity as $entity) {
+            $coll = $reflectionMethod->invoke($entity);
+
+            foreach ($coll as $relatedEntity) {
+
+                $result[] = $relatedEntity;
+            }
+        }
+        return $result;
+    }
+
 }

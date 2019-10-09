@@ -37,12 +37,12 @@
                     </td>
                     <td>{{ localidad.altura }}</td>
                     <td>
-                        <a href="{{ path('comuna_show', {'id': localidad.comuna.id}) }}" 
-                           title="Ir a Ficha Comuna {{ localidad.comuna.nombre }}">
-                            {{ localidad.comuna.nombre }}
+                        <a href="{{ path('comuna_show', {'id': localidad.subsector.sector.comuna.Id}) }}" 
+                           title="Ir a Ficha Comuna {{ localidad.subsector.sector.comuna.nombre }}">
+                            {{ localidad.subsector.sector.comuna.nombre }}
                         </a>
-                        <a href="{{ path('comuna_edit', {'id': localidad.comuna.id}) }}" 
-                           title="Ir a Editar Comuna {{ localidad.comuna.nombre }}">
+                        <a href="{{ path('comuna_edit', {'id': localidad.subsector.sector.comuna.Id}) }}" 
+                           title="Ir a Editar Comuna {{ localidad.subsector.sector.comuna.nombre }}">
                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         </a>
                     </td>

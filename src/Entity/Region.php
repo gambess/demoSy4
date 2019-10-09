@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +64,16 @@ class Region
      * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
      */
     private $descripcion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Provincia", mappedBy="region")
+     */
+    private $provincias;
+
+    public function __construct()
+    {
+        $this->provincias = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +148,37 @@ class Region
     public function setDescripcion(?string $descripcion): self
     {
         $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Provincia[]
+     */
+    public function getProvincias(): Collection
+    {
+        return $this->provincias;
+    }
+
+    public function addProvincia(Provincia $provincia): self
+    {
+        if (!$this->provincias->contains($provincia)) {
+            $this->provincias[] = $provincia;
+            $provincia->setRegion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProvincia(Provincia $provincia): self
+    {
+        if ($this->provincias->contains($provincia)) {
+            $this->provincias->removeElement($provincia);
+            // set the owning side to null (unless already changed)
+            if ($provincia->getRegion() === $this) {
+                $provincia->setRegion(null);
+            }
+        }
 
         return $this;
     }

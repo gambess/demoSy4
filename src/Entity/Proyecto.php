@@ -169,22 +169,12 @@ class Proyecto
     private $obervaciones;
 
     /**
-     * @var \Localidad
-     *
-     * @ORM\ManyToOne(targetEntity="Localidad")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="localidad_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Localidad", inversedBy="proyectos")
      */
     private $localidad;
 
     /**
-     * @var \Producto
-     *
-     * @ORM\ManyToOne(targetEntity="Producto")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="producto_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Producto", inversedBy="proyectos")
      */
     private $producto;
 

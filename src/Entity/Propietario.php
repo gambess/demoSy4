@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -62,6 +64,16 @@ class Propietario
      * @ORM\Column(name="descripcion", type="text", length=0, nullable=true)
      */
     private $descripcion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Vivienda", mappedBy="propietario")
+     */
+    private $viviendas;
+
+    public function __construct()
+    {
+        $this->viviendas = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +148,37 @@ class Propietario
     public function setDescripcion(?string $descripcion): self
     {
         $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Vivienda[]
+     */
+    public function getViviendas(): Collection
+    {
+        return $this->viviendas;
+    }
+
+    public function addVivienda(Vivienda $vivienda): self
+    {
+        if (!$this->viviendas->contains($vivienda)) {
+            $this->viviendas[] = $vivienda;
+            $vivienda->setPropietario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVivienda(Vivienda $vivienda): self
+    {
+        if ($this->viviendas->contains($vivienda)) {
+            $this->viviendas->removeElement($vivienda);
+            // set the owning side to null (unless already changed)
+            if ($vivienda->getPropietario() === $this) {
+                $vivienda->setPropietario(null);
+            }
+        }
 
         return $this;
     }
